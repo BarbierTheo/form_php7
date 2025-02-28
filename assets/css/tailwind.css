@@ -6049,6 +6049,9 @@
   .justify-items-stretch {
     justify-items: stretch;
   }
+  .gap-1 {
+    gap: calc(var(--spacing) * 1);
+  }
   .gap-2 {
     gap: calc(var(--spacing) * 2);
   }
@@ -6737,6 +6740,9 @@
   }
   .bg-\[var\(--my_variable\)\] {
     background-color: var(--my_variable);
+  }
+  .bg-accent {
+    background-color: var(--color-accent);
   }
   .bg-base-100 {
     background-color: var(--color-base-100);
@@ -7661,6 +7667,9 @@
   }
   .text-accent {
     color: var(--color-accent);
+  }
+  .text-base-100 {
+    color: var(--color-base-100);
   }
   .text-base-200 {
     color: var(--color-base-200);

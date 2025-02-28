@@ -3,48 +3,48 @@
 
                 <span class="font-semibold text-2xl">Inscription</span>
                 <hr class="w-full">
-                <form action="" class="flex flex-col flex-wrap justify-center gap-2">
+                <form action="" class="flex flex-col flex-wrap justify-center gap-2" onsubmit="showConfirm()">
                     <div class="flex flex-col lg:flex-row gap-2">
 
                         <label class="input input-bordered flex items-center gap-2 w-full lg:w-[50%] form-control ">
                             Nom
-                            <input type="text" name="name" class="" placeholder="Henry" required="required" />
+                            <input type="text" class="" placeholder="Henry" required="required" />
 
                             <span class="fieldset-label text-red-400/80 hidden">Incorrect</span>
                         </label>
 
                         <label class="input input-bordered flex items-center gap-2 w-full lg:w-[50%]">
                             Prénom
-                            <input type="text" name="surname" class="" placeholder="Thierry" required="required" />
+                            <input type="text" class="" placeholder="Thierry" required="required"/>
                             
                         </label>
                     </div>
 
                     <label class="input input-bordered flex items-center gap-2 w-full">
                         Date de naissance
-                        <input type="date" id="birth" name="birthDate" value="" max="" required="required" />
+                        <input type="date" id="birth" value="" max=""  required="required"/>
                     </label>
 
                     <label class="input input-bordered flex items-center gap-2 w-full">
                         Adresse mail
-                        <input type="email" name="email" class="w-full" placeholder="thierry.henry@gmail.com" required="required" />
+                        <input type="email" class="w-full" placeholder="thierry.henry@gmail.com" required="required"/>
                     </label>
 
                     <div class="flex flex-col lg:flex-row gap-2">
 
                         <label class="input input-bordered flex items-center gap-2 w-full lg:w-[50%]">
                             Mot de passe
-                            <input type="password" class="" placeholder="********" required="required" />
+                            <input type="password" class="" placeholder="********"  required="required"/>
                         </label>
 
                         <label class="input input-bordered flex items-center gap-2 w-full lg:w-[50%]">
                             Confirmation
-                            <input type="password" class="" placeholder="********" required="required" />
+                            <input type="password" class="" placeholder="********"  required="required"/>
                         </label>
                     </div>
 
                     <div class="flex flex-col lg:flex-row gap-2">
-                        <select class="select w-full lg:w-[50%]" name="gender" required="required">
+                        <select class="select w-full lg:w-[50%]" required="required">
                             <option disabled selected>Genre</option>
                             <option>Homme</option>
                             <option>Femme</option>
@@ -54,11 +54,11 @@
 
                         <label class="text-sm flex items-center justify-center w-full lg:w-[50%] gap-4 mt-4 lg:mt-0">
                             Accepter les conditions d'utilisations
-                            <input type="checkbox" class="checkbox checkbox-md" name="conditions" required="required" />
+                            <input type="checkbox" class="checkbox checkbox-md" required="required" />
                         </label>
                     </div>
 
-                    <button class="btn bg-base-100 mt-4 w-fit mx-auto" type="submit">Inscrivez-vous</button>
+                    <button class="btn bg-base-100 mt-4 w-fit mx-auto" type="submit" >Inscrivez-vous</button>
 
                 </form>
 

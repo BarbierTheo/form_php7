@@ -37,7 +37,7 @@
 
                         <div class="flex flex-col text-right gap-2">
                             <span class="text-xs">Pas encore de compte ?</span>
-                            <button class="btn bg-neutral-content text-base-200">Inscrivez-vous</button>
+                            <button class="btn bg-neutral-content text-base-200 inscription" type="button" onclick="showInscription()">Inscrivez-vous</button>
                         </div>
                     </div>
                 </form>

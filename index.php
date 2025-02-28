@@ -10,8 +10,15 @@
 </head>
 
 <body>
+    <nav class="fixed flex w-screen justify-center gap-1 mt-4">
+    <button class="btn bg-base-0 w-fit connect">Se connecter</button>
+    <button class="btn bg-neutral-content text-base-100 w-fit inscription">S'inscrire</button>
 
-    <div class="w-screen h-screen flex justify-center items-center">
+
+    </nav>
+
+
+    <div class="w-screen h-screen flex justify-center items-center" id="interface">
 
 
         <!-- <?php include_once 'inscription.php' ?> -->
@@ -24,7 +31,7 @@
     </div>
 
 
-    <script type="module" src="https://unpkg.com/cally"></script>
+    <script src="./assets/js/script.js"></script>
 </body>
 
 </html>

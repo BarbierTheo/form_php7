@@ -5,6 +5,6 @@
         <hr class="w-full">
         <span class="text-md">Merci de votre inscription ! Vous pouvez dorénavant vous connecter.</span>
 
-        <button class="btn bg-base-0 w-fit mx-auto">Connectez-vous</button>
+        <button class="btn bg-base-0 w-fit mx-auto connect" onclick="showConnect()">Connectez-vous</button>
     </div>
 </div>

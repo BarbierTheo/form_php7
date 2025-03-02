@@ -10,26 +10,18 @@
 </head>
 
 <body>
-    <nav class="fixed flex w-screen justify-center gap-1 mt-4">
-    <button class="btn bg-base-0 w-fit connect">Se connecter</button>
-    <button class="btn bg-neutral-content text-base-100 w-fit inscription">S'inscrire</button>
+    <nav class="fixed flex w-screen justify-between gap-1 mt-4 items-center px-16">
+        <a href="" class="text-2xl font-semibold">Share</a>
 
+        <div>
+            <button class="btn bg-base-0 w-fit connect">Se connecter</button>
+            <button class="btn bg-neutral-content text-base-100 w-fit inscription">S'inscrire</button>
+        </div>
 
     </nav>
 
-
-    <div class="w-screen h-screen flex justify-center items-center" id="interface">
-
-
-        <!-- <?php include_once 'inscription.php' ?> -->
-
-        <!-- <?php include_once 'connexion.php' ?> -->
-
-        <!-- <?php include_once 'inscriptionconfirm.php' ?> -->
-
-
+    <div class="w-screen h-screen hidden justify-center items-center bg-zinc-900/50 fixed" id="interface">
     </div>
-
 
     <script src="./assets/js/script.js"></script>
 </body>

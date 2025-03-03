@@ -23,6 +23,11 @@
     <div class="w-screen h-screen hidden justify-center items-center bg-zinc-900/50 fixed" id="interface">
     </div>
 
+
+    <div class="w-screen h-screen flex justify-center items-center bg-zinc-900/50 fixed" id="interface">
+        <?php require_once 'inscription.php'; ?>
+    </div>
+
     <script src="./assets/js/script.js"></script>
 </body>
 

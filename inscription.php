@@ -44,12 +44,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_POST['password2'])) {
         if (empty($_POST['password2'])) {
             $errors['password2'] = "Confirmez votre mot de passe";
+        } else if ($_POST['password1'] != $_POST['password2']) {
+            $errors['password1'] = "Mot de passe non similaire";
+            $errors['password2'] = "Mot de passe non similaire";
         }
     }
-    
+
+    if(!isset($_POST['conditions'])) {
+        $errors['conditions'] = "Acceptez les conditions d'utilisations";
+    }
+
 }
 
-var_dump($errors);
+var_dump($_POST);
 ?>
 
 
@@ -64,7 +71,7 @@ var_dump($errors);
         <form action="" method="post" class="flex flex-col flex-wrap justify-center gap-2" onsubmit="showConfirm()" novalidate>
             <div class="flex flex-col lg:flex-row gap-2">
 
-                <label class="input input-bordered flex items-center gap-2 w-full lg:w-[50%] form-control">
+                <label class="input input-bordered flex items-center gap-2 w-full lg:w-[50%] form-control <?=  COUNT($errors['lastname']) > 0 ? "border-red-800" : "" ?>">
                     Nom
                     <input type="text" class="" placeholder="Henry" required name="lastname" value="<?= $_POST['lastname'] ?? "" ?>" />
 
@@ -108,7 +115,7 @@ var_dump($errors);
 
             <div class="flex flex-col lg:flex-row gap-2">
                 <select class="select w-full lg:w-[50%]" required name="genre">
-                    <option disabled selected>Genre</option>
+                    <option disabled selected>Veuillez sélectionner un genre</option>
                     <option>Homme</option>
                     <option>Femme</option>
                     <option>Autre</option>
@@ -117,10 +124,11 @@ var_dump($errors);
 
                 <label class="text-sm flex items-center justify-center w-full lg:w-[50%] gap-4 mt-4 lg:mt-0">
                     Accepter les conditions d'utilisations
-                    <input type="checkbox" class="checkbox checkbox-md" required />
+                    <input type="checkbox" class="checkbox checkbox-md" required name="conditions" />
                 </label>
             </div>
 
+            <span class="fieldset-label text-red-400/80 text-center"><?= $errors['conditions'] ?? "" ?></span>
             <button class="btn bg-base-100 mt-4 w-fit mx-auto" type="submit">Inscrivez-vous</button>
 
         </form>

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>en form aujourd'hui</title>
     <!-- npx @tailwindcss/cli -i ./assets/css/style.css -o ./assets/css/tailwind.css --watch -->
-    <link rel="stylesheet" href="./assets/css/tailwind.css">
+    <link rel="stylesheet" href="../assets/css/tailwind.css">
 </head>
 
 <body>
@@ -25,10 +25,10 @@
 
 
     <div class="w-screen h-screen flex justify-center items-center bg-zinc-900/50 fixed" id="interface">
-        <?php require_once 'inscription.php'; ?>
+        <?php require_once '../inscription.php'; ?>
     </div>
 
-    <script src="./assets/js/script.js"></script>
+    <script src="../assets/js/script.js"></script>
 </body>
 
 </html>

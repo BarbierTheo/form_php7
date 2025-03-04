@@ -71,6 +71,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (!isset($_POST['conditions'])) {
         $errors['conditions'] = "Acceptez les conditions d'utilisations";
     }
+
+    if(empty($errors)){
+        header("location: ../view/view-confirmation.php");
+    }
+
+
 }
 
 include_once '../View/view-inscription.php';

@@ -5,7 +5,7 @@
             <div class="flex flex-col w-full gap-4">
                 <div class="flex items-center justify-between">
                     <span class="font-semibold text-2xl">Inscription</span>
-                    <button href="" class="font-bold py-1 px-3 bg-red-700/50 rounded-md hover:bg-red-700/30 cursor-pointer" onclick="closeWindow()">X</button>
+                    <a href="../Controller/controller-connexion.php" class="font-bold py-1 px-3 bg-red-700/50 rounded-md hover:bg-red-700/30 cursor-pointer">X</a>
                 </div>
                 <hr class="w-full">
                 <form action="" method="post" class="flex flex-col flex-wrap justify-center gap-2" onsubmit="showConfirm()" novalidate>

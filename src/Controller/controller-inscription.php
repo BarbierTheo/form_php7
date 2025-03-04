@@ -1,4 +1,7 @@
 <?php
+
+    require_once '../../config.php';
+
 $regexname = "/^[a-z ,.'-]+$/i";
 $classicregex = "/^(?=.{3,20}$)(?![_.-])(?!.*[_.-]{2})[a-zA-Z0-9_-]+([^._-])$/";
 $dateregex = "/^((19\d{2})|(20\d{2}))-(((02)-(0[1-9]|[1-2][0-9]))|(((0(1|[3-9]))|(1[0-2]))-(0[1-9]|[1-2][0-9]|30))|((01|03|05|07|08|10|12)-(31)))$/";
@@ -64,19 +67,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     if (!isset($_POST['genre'])) {
-            $errors['genre'] = "Acceptez les conditions d'utilisations";
-
+        $errors['genre'] = "Acceptez les conditions d'utilisations";
     }
 
     if (!isset($_POST['conditions'])) {
         $errors['conditions'] = "Acceptez les conditions d'utilisations";
     }
 
-    if(empty($errors)){
-        header("location: ../view/view-confirmation.php");
+    if (empty($errors)) {
+
+        $pdo = new PDO('mysql:host=' . DB_HOST . ';dbname=' . DB_NAME . ';charset=utf8', DB_USER, DB_PASS);
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+
+        var_dump($pdo);
     }
-
-
 }
 
 include_once '../View/view-inscription.php';

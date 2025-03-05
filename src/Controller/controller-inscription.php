@@ -1,6 +1,6 @@
 <?php
 
-    require_once '../../config.php';
+require_once '../../config.php';
 
 $regexname = "/^[a-z ,.'-]+$/i";
 $classicregex = "/^(?=.{3,20}$)(?![_.-])(?!.*[_.-]{2})[a-zA-Z0-9_-]+([^._-])$/";
@@ -75,12 +75,52 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     if (empty($errors)) {
-
+        // connexion BDD
         $pdo = new PDO('mysql:host=' . DB_HOST . ';dbname=' . DB_NAME . ';charset=utf8', DB_USER, DB_PASS);
+        // options avancées
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+        // requête SQL création users avec marqueur nominatifs
+        $sql = "INSERT INTO
+                `76_users` (
+                    `user_gender`,
+                    `user_lastname`,
+                    `user_firstname`,
+                    `user_pseudo`,
+                    `user_birthdate`,
+                    `user_mail`,
+                    `user_password`
+                ) VALUES (
+                    :gender,
+                    :lastname,
+                    :firstname,
+                    :pseudo,
+                    :birthdate,
+                    :mail,
+                    :password
+                )";
 
-        var_dump($pdo);
+
+        function safeInput($string){
+            $input = trim($string);
+            $input = htmlspecialchars($input);
+            return $input;
+        }
+
+
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindValue(':gender', safeInput($_POST['genre']), PDO::PARAM_STR);
+        $stmt->bindValue(':lastname', safeInput($_POST['lastname']), PDO::PARAM_STR);
+        $stmt->bindValue(':firstname', safeInput($_POST['firstname']), PDO::PARAM_STR);
+        $stmt->bindValue(':pseudo', safeInput($_POST['pseudo']), PDO::PARAM_STR);
+        $stmt->bindValue(':birthdate', safeInput($_POST['birthdate']), PDO::PARAM_STR);
+        $stmt->bindValue(':mail', safeInput($_POST['mail']), PDO::PARAM_STR);
+        $stmt->bindValue(':password', password_hash($_POST['password1'], PASSWORD_DEFAULT), PDO::PARAM_STR);
+
+        if($stmt->execute()){
+            header("Location: controller-confirmation.php");
+            exit;
+        }
     }
 }
 

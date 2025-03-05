@@ -2,7 +2,7 @@
 
 require_once '../../config.php';
 
-$regexname = "/^[a-z ,.'-]+$/i";
+$regexname = "/[a-zñÑ\-\_0-9áéíóúÁÉÍÓÚ]{3,20}/i";
 $classicregex = "/^(?=.{3,20}$)(?![_.-])(?!.*[_.-]{2})[a-zA-Z0-9_-]+([^._-])$/";
 $dateregex = "/^((19\d{2})|(20\d{2}))-(((02)-(0[1-9]|[1-2][0-9]))|(((0(1|[3-9]))|(1[0-2]))-(0[1-9]|[1-2][0-9]|30))|((01|03|05|07|08|10|12)-(31)))$/";
 
@@ -27,11 +27,28 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     }
 
+    $pdo = new PDO('mysql:host=' . DB_HOST . ';dbname=' . DB_NAME . ';charset=utf8', DB_USER, DB_PASS);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    $sql = "SELECT * FROM `76_users` WHERE `user_pseudo` = :pseudo";
+
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindValue(':pseudo', $_POST['pseudo'], PDO::PARAM_STR);
+
+    $stmt->execute();
+
+    $stmt->rowCount() == 0 ? $foundUsername = false : $foundUsername = true;
+
+    $pdo = "";
+
+
     if (isset($_POST['pseudo'])) {
         if (empty($_POST['pseudo'])) {
             $errors['pseudo'] = "Rentrez un prénom";
         } else if (!preg_match($classicregex, $_POST['pseudo'])) {
             $errors['pseudo'] = "Choisissez un pseudo en 3 et 20 caractères, sans caractères trop particuliers";
+        } else if ($foundUsername == true) {
+            $errors['pseudo'] = "Pseudo déjà existant";
         }
     }
 
@@ -43,11 +60,29 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     }
 
+
+    $pdo = new PDO('mysql:host=' . DB_HOST . ';dbname=' . DB_NAME . ';charset=utf8', DB_USER, DB_PASS);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    $sql = "SELECT * FROM `76_users` WHERE `user_mail` = :mail";
+
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindValue(':mail', $_POST['mail'], PDO::PARAM_STR);
+
+    $stmt->execute();
+
+    $stmt->rowCount() == 0 ? $foundMail = false : $foundMail = true;
+
+    $pdo = "";
+
+
     if (isset($_POST['mail'])) {
         if (empty($_POST['mail'])) {
             $errors['mail'] = "Rentrez votre adresse mail";
         } else if (!filter_var($_POST['mail'], FILTER_VALIDATE_EMAIL)) {
             $errors['mail'] = "Adresse mail invalide";
+        } else if ($foundMail) {
+            $errors['mail'] = "Adresse mail déjà existante";
         }
     }
 
@@ -101,7 +136,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 )";
 
 
-        function safeInput($string){
+        function safeInput($string)
+        {
             $input = trim($string);
             $input = htmlspecialchars($input);
             return $input;
@@ -117,10 +153,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $stmt->bindValue(':mail', safeInput($_POST['mail']), PDO::PARAM_STR);
         $stmt->bindValue(':password', password_hash($_POST['password1'], PASSWORD_DEFAULT), PDO::PARAM_STR);
 
-        if($stmt->execute()){
+        if ($stmt->execute()) {
             header("Location: controller-confirmation.php");
             exit;
         }
+
+        // On supprime l'instance PDO
+        $pdo = '';
     }
 }
 

@@ -1,4 +1,5 @@
 <?php include_once '../../templates/head.php'  ?>
+
 <body>
     <div class="w-screen h-screen flex justify-center items-center bg-zinc-900/50 fixed" id="interface">
         <div class="min-w-[90%] lg:min-w-[50rem] bg-base-300 rounded-2xl p-8 flex justify-center items-center shadow-md">
@@ -6,12 +7,12 @@
 
                 <div class="flex items-center justify-start">
                     <span class="font-semibold text-2xl">Connexion</span>
-                    
+
                 </div>
                 <hr class="w-full">
 
-                <form action="" class="flex flex-col flex-wrap justify-center gap-2">
-                    <label class="input input-bordered flex items-center gap-2 w-full">
+                <form method="POST" class="flex flex-col flex-wrap justify-center gap-2">
+                    <label class="input input-bordered flex items-center gap-2 w-full <?= isset($errors['login']) ? "border-red-800" : "" ?>">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             viewBox="0 0 16 16"
@@ -20,10 +21,11 @@
                             <path
                                 d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM12.735 14c.618 0 1.093-.561.872-1.139a6.002 6.002 0 0 0-11.215 0c-.22.578.254 1.139.872 1.139h9.47Z" />
                         </svg>
-                        <input type="text" class="grow" placeholder="Adresse mail" />
+                        <input type="text" class="grow" placeholder="Adresse mail ou pseudo" name="login" value=""/>
+                        <span class="fieldset-label text-red-400/80"><?= $errors['login'] ?? "" ?></span>
                     </label>
 
-                    <label class="input input-bordered flex items-center gap-2 w-full">
+                    <label class="input input-bordered flex items-center gap-2 w-full <?= isset($errors['password']) ? "border-red-800" : "" ?>">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             viewBox="0 0 16 16"
@@ -34,12 +36,16 @@
                                 d="M14 6a4 4 0 0 1-4.899 3.899l-1.955 1.955a.5.5 0 0 1-.353.146H5v1.5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-2.293a.5.5 0 0 1 .146-.353l3.955-3.955A4 4 0 1 1 14 6Zm-4-2a.75.75 0 0 0 0 1.5.5.5 0 0 1 .5.5.75.75 0 0 0 1.5 0 2 2 0 0 0-2-2Z"
                                 clip-rule="evenodd" />
                         </svg>
-                        <input type="password" class="grow" placeholder="***********" />
+                        <input type="password" class="grow" placeholder="***********" name="password" />
+
+                        <span class="fieldset-label text-red-400/80"><?= $errors['password'] ?? "" ?></span>
                     </label>
 
                     <div class="flex w-full justify-between items-end mt-2 lg:mt-4">
-
-                        <button class="btn bg-base-100" type="submit">Connectez-vous</button>
+                        <div>
+                            <span class="fieldset-label text-red-400/80"><?= $errors['connexion'] ?? "" ?></span>
+                            <button class="btn bg-base-100" type="submit">Connectez-vous</button>
+                        </div>
 
                         <div class="flex flex-col text-right gap-2">
                             <span class="text-xs">Pas encore de compte ?</span>

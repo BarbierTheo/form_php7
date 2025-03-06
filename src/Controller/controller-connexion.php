@@ -3,6 +3,11 @@ include_once '../../config.php';
 
 session_start();
 
+if (isset($_SESSION['user_id'])) {
+    header('Location: controller-profile.php');
+    exit;
+}
+
 $errors = [];
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -40,6 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         } else {
             if (password_verify($_POST['password'], $user['user_password'])) {
                 $_SESSION = $user;
+                unset($_SESSION['user_password']);
                 header('Location: controller-profile.php');
                 exit;
             } else {

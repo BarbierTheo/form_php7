@@ -1,26 +1,42 @@
 <?php include_once '../../templates/head.php'  ?>
 
 <body>
-    <div class="w-screen h-screen flex justify-center items-center bg-zinc-900/50 fixed" id="interface">
-        <div class="min-w-[90%] lg:min-w-[50rem] bg-base-300 rounded-2xl p-8 flex justify-center items-center shadow-md">
-            <div class="flex flex-col w-full gap-4">
-                <div class="flex items-center justify-between">
-                    <span class="font-semibold text-2xl">Profil</span>
-                    <a href="../Controller/controller-connexion.php" class="font-bold py-1 px-3 bg-red-700/50 rounded-md hover:bg-red-700/30 cursor-pointer">X</a>
-                </div>
-                <hr class="w-full">
-                <div class="flex flex-col gap-1">
 
-                    <p><span class="font-bold">Pseudo :</span> Ouais</p>
-                    <p><span class="font-bold">Nom :</span> Machin</p>
-                    <p><span class="font-bold">Prénom :</span> Chouette</p>
-                    <p><span class="font-bold">Adresse mail :</span> Chouette@aaa.com</p>
-                    <p><span class="font-bold">Date de naissance :</span> 1995-07-28</p>
-
-                </div>
+<header class="mt-8 lg:mt-16 w-screen flex justify-center gap-4 lg:gap-16 items-center px-2">
+    <div class="bg-[url(../../assets/img/users/12/foot.jpg)] w-32 h-32 lg:w-42 lg:h-42 bg-cover bg-center rounded-full">
+    </div>
+    <div class="flex flex-col gap-2">
+        <div class="flex flex-col gap-1">
+            <span class="text-xl lg:text-3xl font-semibold">Thierry Henry</span>
+            <span class="text-sm">Que des numéros 9 dans ma team</span>
+        </div>
+        <div class="flex gap-3 lg:gap-8">
+            <div class="flex flex-col items-center">
+                <span class="font-semibold text-lg">8</span>
+                <span class="text-sm leading-2">publications</span>
+            </div>
+            <div class="flex flex-col items-center">
+                <span class="font-semibold text-lg">17</span>
+                <span class="text-sm leading-2">followers</span>
+            </div>
+            <div class="flex flex-col items-center">
+                <span class="font-semibold text-lg">23</span>
+                <span class="text-sm leading-2">suivi.e.s</span>
             </div>
         </div>
-</body>
+        <div class="flex mt-4">
+            <button class="btn btn-accent">Follow</button>
+        </div>
+    </div>
+</header>
+<main class="w-screen mt-16">
+<div class="flex flex-wrap gap-4 mx-auto justify-center">
 
+    <div class="bg-[url(../../assets/img/users/12/foot.jpg)] w-[7rem] h-[7rem] sm:w-[12rem] sm:h-[12rem] lg:w-[20rem] lg:h-[20rem] bg-cover bg-center rounded-sm"></div>
+    <div class="bg-[url(../../assets/img/users/12/foot.jpg)] w-[7rem] h-[7rem] sm:w-[12rem] sm:h-[12rem] lg:w-[20rem] lg:h-[20rem] bg-cover bg-center rounded-sm"></div>
+    <div class="bg-[url(../../assets/img/users/12/foot.jpg)] w-[7rem] h-[7rem] sm:w-[12rem] sm:h-[12rem] lg:w-[20rem] lg:h-[20rem] bg-cover bg-center rounded-md"></div>
+</div>
+</main>
+</body>
 
 </html>

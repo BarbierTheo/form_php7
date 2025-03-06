@@ -7,3 +7,23 @@ vérifier si user existe
 
 SELECT * FROM 76_users
 WHERE user_pseudo = 'Azertz';
+
+add img
+
+INSERT INTO `76_posts` (post_timestamp, post_description, post_private, user_id) VALUES
+	("1736155656", "Franchement le couloir est énervé", "0", "12"),
+	("1704533256", "Mais téma la pelouse", "0", "13"),
+	("1712654856", "Belle investissement", "0", "14"),
+	("1713454056", "Bête de journée", "0", "12"),
+	("1714404456", "Pfiou ça descend", "0", "13"),
+	("1735486056", "Ce soir ça joue là !", "0", "13"),
+	("1729438056", "Dolce vita", "0", "14")
+
+INSERT INTO `76_pictures` (pic_name, post_id) VALUES
+	("couloir.jpg", "1"),
+	("foot.jpg", "2"),
+	("maison.jpeg", "3"),
+	("sky.jpg", "4"),
+	("stairs.jpg", "5"),
+	("theater.jpg", "6"),
+	("villa.webp", "7"),

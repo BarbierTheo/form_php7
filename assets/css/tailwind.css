@@ -7168,6 +7168,12 @@
   .p-1 {
     padding: calc(var(--spacing) * 1);
   }
+  .p-2 {
+    padding: calc(var(--spacing) * 2);
+  }
+  .p-3 {
+    padding: calc(var(--spacing) * 3);
+  }
   .p-8 {
     padding: calc(var(--spacing) * 8);
   }
@@ -7298,6 +7304,9 @@
   }
   .pt-34 {
     padding-top: calc(var(--spacing) * 34);
+  }
+  .pt-38 {
+    padding-top: calc(var(--spacing) * 38);
   }
   .pt-44 {
     padding-top: calc(var(--spacing) * 44);

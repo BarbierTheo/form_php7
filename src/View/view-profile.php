@@ -2,7 +2,7 @@
 
 <?php include_once '../../templates/header.php'; ?>
 
-<main class="lg:max-w-[800px] w-screen mx-auto pt-44 lg:pt-26">
+<main class="lg:max-w-[800px] w-screen mx-auto pt-38 lg:pt-26">
     <section class="flex justify-between lg:justify-center px-4 lg:px-8 w-full gap-0 lg:gap-16">
         <div class="flex justify-center items-center min-w-[50%]">
             <div class="bg-[url(../../assets/img/users/12/foot.jpg)] w-32 h-32 lg:w-42 lg:h-42 bg-cover bg-center rounded-full self-center"></div>
@@ -14,9 +14,9 @@
                 <button class="btn btn-xs">voir l'archive</button>
             </div>
             <div class="flex gap-1 lg:gap-4 flex-col lg:flex-row max-md:text-sm">
-                <span class="lg:text-zinc-400"><span class="font-semibold text-zinc-900 dark:text-zinc-100">5</span> publications</span>
-                <span class="lg:text-zinc-400"><span class="font-semibold text-zinc-900 dark:text-zinc-100">171</span> followers</span>
-                <span class="lg:text-zinc-400"><span class="font-semibold text-zinc-900 dark:text-zinc-100">233</span> suivi(e)s</span>
+                <span class="lg:text-zinc-400"><span class="font-semibold text-zinc-900 dark:text-zinc-100"><?= $countProfile[0]['posts'] ?? '0' ?></span> publications</span>
+                <span class="lg:text-zinc-400"><span class="font-semibold text-zinc-900 dark:text-zinc-100"><?= $countProfile[0]['followers'] ?? '0' ?></span> followers</span>
+                <span class="lg:text-zinc-400"><span class="font-semibold text-zinc-900 dark:text-zinc-100"><?= $countProfile[0]['follows'] ?? '0' ?></span> suivi(e)s</span>
             </div>
             <span>description la galère</span>
         </div>

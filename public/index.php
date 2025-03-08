@@ -3,7 +3,7 @@
 <?php include_once '../../templates/header.php'  ?>
 
 
-<main class="lg:max-w-[800px] min-h-screen mx-auto pt-14">
+<main class="lg:max-w-[800px] mx-auto pt-14 min-h-[90vh]">
     <section class="w-full mt-16 lg:mt-8 py-4 flex flex-col gap-6">
 
         <?php foreach ($allPosts as $value) {
@@ -14,7 +14,7 @@
                 <div class="flex px-4 gap-4 items-center justify-between">
                     <div class="flex gap-4 items-center">
                         <div class="skeleton h-15 w-15 rounded-full"></div>
-                        <div class="flex flex-col leading-3 justify-center">
+                        <div class="flex flex-col justify-center">
                             <a href="" class="font-semibold text-lg"><?= $value['user_pseudo'] ?></a>
                             <span><?= date("d-m-Y", $value['post_timestamp']) ?></span>
                         </div>
@@ -29,7 +29,7 @@
                     <div class="bg-[url(../../assets/img/users/<?= $value['user_id'] ?>/<?= $value['pic_name'] ?>)] bg-cover bg-center w-full h-[40rem]"></div>
                 </div>
 
-                <div class="px-3 flex flex-col gap-1">
+                <div class="px-3 flex flex-col gap-2">
                     <div class="flex gap-4">
                         <button class="flex gap-1 cursor-pointer hover:underline">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
@@ -45,11 +45,11 @@
                         </button>
                     </div>
 
-                    <span>
+                    <span class="">
                         <?= $value['post_description'] ?>
                     </span>
 
-                    <div class="">
+                    <div class="flex flex-col items-start gap-1">
                         <div>
                             <a href="" class="font-semibold hover:underline">dinguerie82</a>
                             <span>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</span>

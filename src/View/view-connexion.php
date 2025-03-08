@@ -49,7 +49,7 @@
 
                         <div class="flex flex-col text-right gap-2">
                             <span class="text-xs">Pas encore de compte ?</span>
-                            <a class="btn bg-neutral-content text-base-200 inscription" href="../Controller/controller-inscription.php">Inscrivez-vous</a>
+                            <a class="btn bg-neutral-content inscription" href="../Controller/controller-inscription.php">Inscrivez-vous</a>
                         </div>
                     </div>
                 </form>

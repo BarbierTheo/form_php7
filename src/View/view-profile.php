@@ -2,16 +2,16 @@
 
 <?php include_once '../../templates/header.php'; ?>
 
-<main class="lg:max-w-[800px] w-screen mx-auto pt-38 lg:pt-26">
+<main class="lg:max-w-[800px] w-screen mx-auto pt-38 lg:pt-26 min-h-[90vh]">
     <section class="flex justify-between lg:justify-center px-4 lg:px-8 w-full gap-0 lg:gap-16">
-        <div class="flex justify-center items-center min-w-[50%]">
+        <div class="flex items-center min-w-[50%]">
             <div class="bg-[url(../../assets/img/users/12/foot.jpg)] w-32 h-32 lg:w-42 lg:h-42 bg-cover bg-center rounded-full self-center"></div>
         </div>
         <div class="flex flex-col gap-2 lg:gap-4 min-w-[50%]">
-            <div class="flex flex-col lg:flex-row gap-1 lg:gap-4 max-md:text-sm">
-                <span class="font-semibold"><?= $_SESSION['user_pseudo'] ?></span>
-                <button class="btn btn-xs btn-neutral">modifier profil</button>
-                <button class="btn btn-xs">voir l'archive</button>
+            <div class="flex flex-col lg:flex-row gap-1 lg:gap-4">
+                <span class="font-semibold text-xl"><?= $_SESSION['user_pseudo'] ?></span>
+                <button class="btn btn-sm btn-neutral">Modifier le profil</button>
+                <button class="btn btn-sm">Voir l'archive</button>
             </div>
             <div class="flex gap-1 lg:gap-4 flex-col lg:flex-row max-md:text-sm">
                 <span class="lg:text-zinc-400"><span class="font-semibold text-zinc-900 dark:text-zinc-100"><?= $countProfile[0]['posts'] ?? '0' ?></span> publications</span>

@@ -19,9 +19,18 @@
     <section class="mt-8 px-1 lg:px-0">
         <div class="grid grid-cols-3 gap-1 lg:gap-2 mx-auto">
 
-            <?php if (isset($searchPosts)) { echo "oui"; ?>
-                <img src="../../assets/img/users/14/maison.jpeg" alt="" class="w-[100%] h-full bg-cover bg-center">
-            <?php } ?>
+            <?php if (isset($searchPosts)) {
+                if (count($searchPosts) >= 1) {
+                    foreach ($searchPosts as $value) { ?>
+                        <img src="../../assets/img/users/<?= $value['user_id'] ?>/<?= $value['pic_name'] ?>" alt="" class="w-[100%] h-full bg-cover bg-center">
+                    <?php }
+                } else { ?>
+                    <div></div>
+                    <div class="text-center">Aucun résultat</div>
+                    <div></div>
+            <?php }
+            } ?>
+            
         </div>
     </section>
 

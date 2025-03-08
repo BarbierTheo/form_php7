@@ -25,7 +25,9 @@
     <section class="mt-8 px-1 lg:px-0">
         <div class="grid grid-cols-3 gap-2 mx-auto">
             <?php foreach ($allPosts as $post) { ?>
-                <img src="../../assets/img/users/<?= $post['user_id'] . "/" . $post['pic_name'] ?>" alt="" class="w-[100%] h-full bg-cover bg-center">
+                <a href="controller-post.php?<?= "post=" . $post['post_id']?>">
+                    <img src="../../assets/img/users/<?= $post['user_id'] . "/" . $post['pic_name'] ?>" alt="" class="w-[100%] h-full bg-cover bg-center">
+                </a>
             <?php } ?>
         </div>
     </section>

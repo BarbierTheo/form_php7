@@ -14,7 +14,7 @@ if (isset($_GET['post'])) {
 
     $pdo = new PDO('mysql:host=' . DB_HOST . ';dbname=' . DB_NAME . ';charset=utf8', DB_USER, DB_PASS);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $sql = "SELECT post_description, pic_name, user_pseudo, post_timestamp FROM 76_posts
+    $sql = "SELECT post_description, pic_name, user_pseudo, post_timestamp, user_id FROM 76_posts
         NATURAL JOIN 76_pictures
         NATURAL JOIN 76_users
         WHERE post_id = :pic_id";
@@ -29,7 +29,7 @@ if (isset($_GET['post'])) {
 
     $pdo = '';
 
-    var_dump($uniquePost);
+    // var_dump($uniquePost);
 
     // var_dump($_GET);
 

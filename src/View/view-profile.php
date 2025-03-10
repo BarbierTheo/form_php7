@@ -5,7 +5,7 @@
 <main class="lg:max-w-[800px] w-screen mx-auto pt-38 lg:pt-26 min-h-[90vh]">
     <section class="flex justify-between lg:justify-center px-4 lg:px-8 w-full gap-0 lg:gap-16">
         <div class="flex items-center min-w-[50%]">
-            <div class="bg-[url(../../assets/img/users/12/foot.jpg)] w-32 h-32 lg:w-42 lg:h-42 bg-cover bg-center rounded-full self-center"></div>
+            <div class="skeleton w-32 h-32 lg:w-42 lg:h-42 bg-cover bg-center rounded-full self-center"></div>
         </div>
         <div class="flex flex-col gap-2 lg:gap-4 min-w-[50%]">
             <div class="flex flex-col lg:flex-row gap-1 lg:gap-4">
@@ -24,11 +24,13 @@
 
     <section class="mt-8 px-1 lg:px-0">
         <div class="grid grid-cols-3 gap-2 mx-auto">
-            <?php foreach ($allPosts as $post) { ?>
-                <a href="controller-post.php?<?= "post=" . $post['post_id']?>">
-                    <img src="../../assets/img/users/<?= $post['user_id'] . "/" . $post['pic_name'] ?>" alt="" class="w-[100%] h-full bg-cover bg-center">
-                </a>
-            <?php } ?>
+            <?php if (isset($allPosts)) {
+                foreach ($allPosts as $post) { ?>
+                    <a href="controller-post.php?<?= "post=" . $post['post_id'] ?>">
+                        <img src="../../assets/img/users/<?= $post['user_id'] . "/" . $post['pic_name'] ?>" alt="" class="w-[100%] h-full bg-cover bg-center">
+                    </a>
+            <?php }
+            } ?>
         </div>
     </section>
 

@@ -35,6 +35,9 @@ if (isset($_GET['post'])) {
 
 
 
+} else {
+    header('Location: controller-index.php');
+    exit;
 }
 
 

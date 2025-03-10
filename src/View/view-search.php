@@ -22,7 +22,10 @@
             <?php if (isset($searchPosts)) {
                 if (count($searchPosts) >= 1) {
                     foreach ($searchPosts as $value) { ?>
+                    
+                <a href="controller-post.php?<?= "post=" . $value['post_id']?>">
                         <img src="../../assets/img/users/<?= $value['user_id'] ?>/<?= $value['pic_name'] ?>" alt="" class="w-[100%] h-full bg-cover bg-center">
+                </a>
                     <?php }
                 } else { ?>
                     <div></div>

@@ -1,7 +1,9 @@
 add user
 
 INSERT INTO `76_users` (`user_gender`,`user_lastname`,`user_firstname`,`user_pseudo`,`user_birthdate`,`user_mail`,`user_password`)
-VALUES	('Homme', 'Barbier', 'Theo', 'blake', '1998-07-24', 'example@example.com', 'choucroute')
+VALUES	('Homme', 'Barbier', 'Theo', 'blake', '1998-07-24', 'example@example.com', 'admin'),
+('Homme', 'Fadli', 'Said', 'FSAID', '2001-07-24', 'example@example.com', 'admin'),
+('Homme', 'Decerf', 'Stéphane', 'Stan', '2001-07-24', 'example@example.com', 'admin')
 
 vérifier si user existe
 
@@ -11,13 +13,13 @@ WHERE user_pseudo = 'Azertz';
 add img
 
 INSERT INTO `76_posts` (post_timestamp, post_description, post_private, user_id) VALUES
-	("1736155656", "Franchement le couloir est énervé", "0", "12"),
-	("1704533256", "Mais téma la pelouse", "0", "13"),
-	("1712654856", "Belle investissement", "0", "14"),
-	("1713454056", "Bête de journée", "0", "12"),
-	("1714404456", "Pfiou ça descend", "0", "13"),
-	("1735486056", "Ce soir ça joue là !", "0", "13"),
-	("1729438056", "Dolce vita", "0", "14")
+	("1736155656", "Franchement le couloir est énervé", "0", "15"),
+	("1704533256", "Mais téma la pelouse", "0", "16"),
+	("1712654856", "Belle investissement", "0", "17"),
+	("1713454056", "Bête de journée", "0", "15"),
+	("1714404456", "Pfiou ça descend", "0", "16"),
+	("1735486056", "Ce soir ça joue là !", "0", "16"),
+	("1729438056", "Dolce vita", "0", "17")
 
 INSERT INTO `76_pictures` (pic_name, post_id) VALUES
 	("couloir.jpg", "1"),

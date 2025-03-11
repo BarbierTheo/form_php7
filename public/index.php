@@ -7,8 +7,7 @@
     <section class="w-full mt-16 lg:mt-8 py-4 flex flex-col gap-6">
 
         <?php foreach ($allPosts as $value) {
-            // var_dump($value) 
-            ?>
+        ?>
 
             <div class="flex flex-col gap-3">
                 <div class="flex px-4 gap-4 items-center justify-between">
@@ -50,14 +49,14 @@
                     </span>
 
                     <div class="flex flex-col items-start gap-1">
-                        <div>
-                            <a href="" class="font-semibold hover:underline">dinguerie82</a>
-                            <span>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</span>
-                        </div>
-                        <div>
-                            <a href="" class="font-semibold hover:underline">blakebigrings</a>
-                            <span>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</span>
-                        </div>
+                        <?php foreach ($allComments as $key => $value) { ?>
+
+                            <div>
+                                <a href="" class="font-semibold hover:underline">dinguerie82</a>
+                                <span>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</span>
+                            </div>
+
+                        <?php } ?>
                         <button class="text-zinc-500 py-1">Voir les autres commentaires</button>
                     </div>
                 </div>

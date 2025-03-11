@@ -22,14 +22,12 @@ $stmt->execute();
 
 $existantPost = $stmt->fetch(PDO::FETCH_ASSOC);
 
-var_dump($existantPost);
-
 if (isset($_GET['post']) AND $existantPost) {
 
     $sql = "SELECT post_description, pic_name, user_pseudo, post_timestamp, user_id, post_id FROM 76_posts
-        NATURAL JOIN 76_pictures
-        NATURAL JOIN 76_users
-        WHERE post_id = :pic_id";
+            NATURAL JOIN 76_pictures
+            NATURAL JOIN 76_users
+            WHERE post_id = :pic_id";
 
     $stmt = $pdo->prepare($sql);
     $stmt->bindValue(':pic_id', $_GET['post'], PDO::PARAM_STR);

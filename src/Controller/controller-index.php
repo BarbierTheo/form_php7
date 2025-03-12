@@ -19,7 +19,8 @@ $sql = "SELECT `post_timestamp`, `post_description`, `pic_name`, `user_pseudo`,`
         WHERE `user_id` in (
         (SELECT group_concat(fav_id) from `76_favorites` 
         WHERE `user_id` = " . $_SESSION['user_id'] . " 
-        GROUP BY `user_id`), " . $_SESSION['user_id'] . " )";
+        GROUP BY `user_id`), " . $_SESSION['user_id'] . " )
+        ORDER BY post_timestamp DESC";
 
 $stmt = $pdo->prepare($sql);
 

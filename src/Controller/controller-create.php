@@ -11,6 +11,12 @@ if (!isset($_SESSION['user_id'])) {
 $errors = [];
 $classicregex = "/^[^#%^&*\][;}{=+\\|><\`~]*$/";
 
+function safeInput($string)
+{
+    $input = trim($string);
+    $input = htmlspecialchars($input);
+    return $input;
+}
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
@@ -59,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         $stmt = $pdo->prepare($sql);
 
-        $stmt->bindValue(':description', htmlspecialchars($_POST['description']), PDO::PARAM_STR);
+        $stmt->bindValue(':description', safeInput($_POST['description']), PDO::PARAM_STR);
         $stmt->bindValue(':date', time(), PDO::PARAM_INT);
         $stmt->bindValue(':user_id', $_SESSION['user_id'], PDO::PARAM_INT);
 

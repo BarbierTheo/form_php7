@@ -14,7 +14,7 @@
                     <div class="flex gap-4 items-center">
                         <div class="skeleton h-15 w-15 rounded-full"></div>
                         <div class="flex flex-col justify-center">
-                            <a href="" class="font-semibold text-lg"><?= $value['user_pseudo'] ?></a>
+                            <a href="controller-otherprofile.php?user=<?= $value['user_id'] ?>" class="font-semibold text-lg"><?= $value['user_pseudo'] ?></a>
                             <span><?= date("d-m-Y", $value['post_timestamp']) ?></span>
                         </div>
                     </div>
@@ -59,7 +59,7 @@
                         <?php foreach (showAllComments($value['post_id'], $pdo) as $value) { ?>
 
                             <div>
-                                <a href="" class="font-semibold hover:underline"><?= $value['user_pseudo'] ?></a>
+                                <a href="controller-otherprofile.php?user=<?= $value['user_id'] ?>" class="font-semibold hover:underline"><?= $value['user_pseudo'] ?></a>
                                 <span><?= $value['com_text'] ?></span>
                             </div>
 

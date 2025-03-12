@@ -1,8 +1,8 @@
 <header class="w-screen fixed flex md:flex-row flex-col justify-center items-center lg:justify-between my-4 px-8 gap-2">
         <div>
-            <a href="controller-index.php" class="text-xl font-semibold max-md:hidden">Instagram</a>
+            <a href="controller-index.php" class="max-md:hidden"><img src="../../assets/img/afpa-logo.png" alt="" class=" w-16 h-16"></a>
         </div>
-        <ul class="menu menu-horizontal rounded-box glass">
+        <ul class="menu menu-horizontal rounded-box glass lg:mt-2">
             <li>
                 <a href="controller-index.php">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">

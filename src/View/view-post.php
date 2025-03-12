@@ -61,8 +61,13 @@
                 <?php } ?>
 
 
-                <button class="text-zinc-500 py-1">Voir les autres commentaires</button>
+                <button class="text-zinc-500 py-1 cursor-pointer">Voir les autres commentaires</button>
             </div>
+            <form class="w-full flex gap-4" method="post">
+                <input type="text" placeholder="Ajouter un commentaire" class="input input-ghost w-full" name="newComment">
+                <button class="btn btn-outline">Ajouter</button>
+                </form>
+                <small class="text-red-400"><?= $errors['newComment'] ?? "" ?></small>
         </div>
     </section>
 

@@ -64,7 +64,7 @@
                             </div>
 
                         <?php } ?>
-                        <button class="text-zinc-500 py-1">Voir les autres commentaires</button>
+                        <a href="/src/Controller/controller-post.php?post=<?= $value['post_id'] ?>" class="text-zinc-500 py-1">Voir le post entier</a>
                     </div>
                 </div>
             </div>

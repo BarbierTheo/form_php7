@@ -3,6 +3,7 @@
 
 
 include_once '../../config.php';
+include_once '../../helpers/functionpost.php';
 session_start();
 
 if (!isset($_SESSION['user_id'])) {
@@ -36,50 +37,50 @@ if (isset($_GET['post']) AND $existantPost) {
 
     $uniquePost = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    $sql = "SELECT * FROM 76_likes
-            WHERE user_id = " . $_SESSION["user_id"] . " AND post_id = " . $uniquePost["post_id"];
+    // $sql = "SELECT * FROM 76_likes
+    //         WHERE user_id = " . $_SESSION["user_id"] . " AND post_id = " . $uniquePost["post_id"];
 
-    $stmt = $pdo->prepare($sql);
+    // $stmt = $pdo->prepare($sql);
 
-    $stmt->execute();
+    // $stmt->execute();
 
-    if ($stmt->fetch(PDO::FETCH_ASSOC)) {
-        $like = true;
-    } else {
-        $like = false;
-    }
+    // if ($stmt->fetch(PDO::FETCH_ASSOC)) {
+    //     $like = true;
+    // } else {
+    //     $like = false;
+    // }
 
-    $sql = "SELECT count(like_id) as `likes`
-            FROM 76_likes
-            WHERE post_id = " . $uniquePost["post_id"];
+    // $sql = "SELECT count(like_id) as `likes`
+    //         FROM 76_likes
+    //         WHERE post_id = " . $uniquePost["post_id"];
 
-    $stmt = $pdo->prepare($sql);
+    // $stmt = $pdo->prepare($sql);
 
-    $stmt->execute();
+    // $stmt->execute();
 
-    $countLikes = $stmt->fetch(PDO::FETCH_ASSOC);
+    // $countLikes = $stmt->fetch(PDO::FETCH_ASSOC);
 
 
-    $sql = "SELECT count(com_id) as `comments`
-            FROM 76_comments
-            WHERE post_id = " . $uniquePost["post_id"];
+    // $sql = "SELECT count(com_id) as `comments`
+    //         FROM 76_comments
+    //         WHERE post_id = " . $uniquePost["post_id"];
 
-    $stmt = $pdo->prepare($sql);
+    // $stmt = $pdo->prepare($sql);
 
-    $stmt->execute();
+    // $stmt->execute();
 
-    $countComment = $stmt->fetch(PDO::FETCH_ASSOC);
+    // $countComment = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    $sql = "SELECT *
-            FROM 76_comments
-            NATURAL JOIN 76_users
-            WHERE post_id = " . $uniquePost["post_id"];
+    // $sql = "SELECT *
+    //         FROM 76_comments
+    //         NATURAL JOIN 76_users
+    //         WHERE post_id = " . $uniquePost["post_id"];
 
-    $stmt = $pdo->prepare($sql);
+    // $stmt = $pdo->prepare($sql);
 
-    $stmt->execute();
+    // $stmt->execute();
 
-    $allComments = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    // $allComments = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 } else {
     header('Location: controller-index.php');

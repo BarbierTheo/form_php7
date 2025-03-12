@@ -14,9 +14,9 @@
                 <button class="btn btn-sm">Voir l'archive</button>
             </div>
             <div class="flex gap-1 lg:gap-4 flex-col lg:flex-row max-md:text-sm">
-                <span class="lg:text-zinc-400"><span class="font-semibold text-zinc-900 dark:text-zinc-100"><?= $countProfile[0]['posts'] ?? '0' ?></span> publications</span>
-                <span class="lg:text-zinc-400"><span class="font-semibold text-zinc-900 dark:text-zinc-100"><?= $countProfile[0]['followers'] ?? '0' ?></span> followers</span>
-                <span class="lg:text-zinc-400"><span class="font-semibold text-zinc-900 dark:text-zinc-100"><?= $countProfile[0]['follows'] ?? '0' ?></span> suivi(e)s</span>
+                <span class="lg:text-zinc-400"><span class="font-semibold text-zinc-900"><?= $countProfile[0]['posts'] ?? '0' ?></span> publications</span>
+                <span class="lg:text-zinc-400"><span class="font-semibold text-zinc-900"><?= $countProfile[0]['followers'] ?? '0' ?></span> followers</span>
+                <span class="lg:text-zinc-400"><span class="font-semibold text-zinc-900"><?= $countProfile[0]['follows'] ?? '0' ?></span> suivi(e)s</span>
             </div>
             <span>description la galère</span>
         </div>
@@ -26,8 +26,8 @@
         <div class="grid grid-cols-3 gap-2 mx-auto">
             <?php if (isset($allPosts)) {
                 foreach ($allPosts as $post) { ?>
-                    <a href="controller-post.php?<?= "post=" . $post['post_id'] ?>">
-                        <img src="../../assets/img/users/<?= $post['user_id'] . "/" . $post['pic_name'] ?>" alt="" class="w-[100%] h-full bg-cover bg-center">
+                    <a href="controller-post.php?<?= "post=" . $post['post_id'] ?>" class="">
+                        <img src="../../assets/img/users/<?= $post['user_id'] . "/" . $post['pic_name'] ?>" alt="" class="w-32 h-32 sm:w-40 sm:h-40 md:w-60 md:h-60 lg:w-70 lg:h-70 object-cover">
                     </a>
             <?php }
             } ?>

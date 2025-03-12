@@ -23,8 +23,8 @@
                 if (count($searchPosts) >= 1) {
                     foreach ($searchPosts as $value) { ?>
                     
-                <a href="controller-post.php?<?= "post=" . $value['post_id']?>">
-                        <img src="../../assets/img/users/<?= $value['user_id'] ?>/<?= $value['pic_name'] ?>" alt="" class="w-[100%] h-full bg-cover bg-center">
+                <a href="controller-post.php?<?= "post=" . $value['post_id']?>" class="w-full h-full flex items-center justify-center">
+                        <img src="../../assets/img/users/<?= $value['user_id'] ?>/<?= $value['pic_name'] ?>" alt="" class="w-32 h-32 sm:w-40 sm:h-40 md:w-60 md:h-60 lg:w-70 lg:h-70 object-cover">
                 </a>
                     <?php }
                 } else { ?>

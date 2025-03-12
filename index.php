@@ -1,3 +1,3 @@
 <?php
-header('location: ../src/Controller/controller-connexion.php');
+header('location: ../src/Controller/controller-index.php');
 exit;

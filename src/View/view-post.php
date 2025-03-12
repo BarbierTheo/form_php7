@@ -11,7 +11,7 @@
             <div class="flex gap-4 items-center">
                 <div class="skeleton h-15 w-15 rounded-full"></div>
                 <div class="flex flex-col justify-center">
-                    <a href="" class="font-semibold text-lg"><?= $uniquePost['user_pseudo'] ?></a>
+                    <a href="controller-otherprofile.php?user=<?= $uniquePost['user_id'] ?>" class="font-semibold text-lg"><?= $uniquePost['user_pseudo'] ?></a>
                     <span><?= date("d-m-Y", $uniquePost['post_timestamp']) ?></span>
                 </div>
             </div>

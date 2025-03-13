@@ -7,8 +7,4 @@ if (isset($_SESSION['user_id'])) {
     exit;
 }
 
-
-
-
-
-include_once '../View/view-confirmation.php' ?>
+include_once '../View/view-confirmation.php';

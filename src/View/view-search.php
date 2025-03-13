@@ -1,7 +1,6 @@
 <?php include_once "../../templates/head.php" ?>
 <?php include_once "../../templates/header.php" ?>
 
-
 <main class="lg:max-w-[800px] w-screen min-h-[90vh] mx-auto pt-38 lg:pt-26">
     <form action="" method="get" class="flex justify-between gap-4 w-[100%] px-2 items-center">
         <label class="input w-[100%]">
@@ -36,8 +35,6 @@
             
         </div>
     </section>
-
 </main>
-
 
 <?php include_once "../../templates/end.php" ?>

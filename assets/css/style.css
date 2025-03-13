@@ -1,7 +1,6 @@
 @import "tailwindcss";
 @plugin "daisyui" {
-    themes: lemonade --default, night --prefersdark;
-  };
 
-  /* dark mode : night */
-  /* light mode : lemonade */
+  themes: lemonade --default, night --dark;
+
+}

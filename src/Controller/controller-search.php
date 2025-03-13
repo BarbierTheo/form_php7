@@ -8,11 +8,10 @@ if (!isset($_SESSION['user_id'])) {
     exit;
 }
 
-// var_dump($_GET['pseudo']);
-
 $pdo = new PDO('mysql:host=' . DB_HOST . ';dbname=' . DB_NAME . ';charset=utf8', DB_USER, DB_PASS);
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+// Si l'URL contient un utilisateur
 if (isset($_GET['pseudo'])) {
     $searchName = $_GET['pseudo'] . "%";
     $sql = "SELECT `pic_name`, `post_private`, `user_id`, `post_id` FROM `76_posts`
@@ -23,17 +22,12 @@ if (isset($_GET['pseudo'])) {
 
     $stmt = $pdo->prepare($sql);
     $stmt->bindValue(':pseudo', $searchName, PDO::PARAM_STR);
-
     $stmt->execute();
-
     $searchPosts = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
     $pdo = '';
 
-    // var_dump($searchPosts);
-
 } else {
-
+// Si l'URL ne contient pas d'utilisateur
     $sql = "SELECT `pic_name`, `user_id`, `post_id` FROM `76_posts`
         NATURAL JOIN `76_pictures`  
         NATURAL JOIN `76_users`
@@ -41,20 +35,10 @@ if (isset($_GET['pseudo'])) {
         ORDER BY post_timestamp DESC;";
 
     $stmt = $pdo->prepare($sql);
-
     $stmt->execute();
-
     $searchPosts = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
     $pdo = '';
 
-    // var_dump($searchPosts);
-
 }
-
-
-
-
-
 
 include_once '../View/view-search.php';

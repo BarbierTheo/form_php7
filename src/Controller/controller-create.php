@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
     if (empty($errors)) {
-
+        // Direction du fichier et rename
         $target_dir = "../../assets/img/users/" . $_SESSION["user_id"] . "/";
         $target_file = $target_dir . basename($_FILES["pic"]["name"]);
         $uploadOk = 1;
@@ -58,6 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $pdo = new PDO('mysql:host=' . DB_HOST . ';dbname=' . DB_NAME . ';charset=utf8', DB_USER, DB_PASS);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+        // Ajout du post à la base de données
         $sql = "INSERT INTO `76_posts` (`post_description`, `post_timestamp`, `user_id`) VALUES
                     (:description,
                      :date,
@@ -73,6 +74,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         $post_id = $pdo->lastInsertId();
 
+        // Ajout de l'image à la base de données
         $sql = "INSERT INTO `76_pictures` (`pic_name`,`post_id`) VALUES
             (:pic_name, :post_id)";
 
@@ -81,10 +83,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $stmt->bindValue(':pic_name', htmlspecialchars($_FILES['pic']['name']), PDO::PARAM_STR);
         $stmt->bindValue(':post_id', $post_id, PDO::PARAM_INT);
 
-        if($stmt->execute()){
-                header("Location: controller-profile.php");
-                exit;
-            }
+        if ($stmt->execute()) {
+            header("Location: controller-profile.php");
+            exit;
+        }
 
         $pdo = '';
     }

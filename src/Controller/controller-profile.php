@@ -10,19 +10,18 @@ if (!isset($_SESSION['user_id'])) {
 
 $pdo = new PDO('mysql:host=' . DB_HOST . ';dbname=' . DB_NAME . ';charset=utf8', DB_USER, DB_PASS);
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-$sql = "SELECT * FROM `76_posts` NATURAL JOIN `76_pictures` WHERE `user_id` = " . $_SESSION['user_id'] . " ORDER BY post_timestamp DESC";
 
-
+// Récupération de l'avatar et de la description du profil de l'utilisateur
+$sql = "SELECT `user_avatar`, `user_description` FROM `76_users` WHERE `user_id` = " . $_SESSION['user_id'];
 $stmt = $pdo->query($sql);
+$profile = $stmt->fetch(PDO::FETCH_ASSOC);
 
+// Récupération de tous les posts de l'utilisateur
+$sql = "SELECT * FROM `76_posts` NATURAL JOIN `76_pictures` WHERE `user_id` = " . $_SESSION['user_id'] . " ORDER BY post_timestamp DESC";
+$stmt = $pdo->query($sql);
 $allPosts = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-$pdo = '';
-
-// var_dump($allPosts);
-
-$pdo = new PDO('mysql:host=' . DB_HOST . ';dbname=' . DB_NAME . ';charset=utf8', DB_USER, DB_PASS);
-$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+// Récupération du nombre de publications, de follows et de followers
 $sql = "SELECT count(post_id) as `posts`,
             (SELECT count(user_id) FROM 76_favorites
             WHERE fav_id = " . $_SESSION['user_id'] . " GROUP BY fav_id) as `followers`,
@@ -34,12 +33,9 @@ $sql = "SELECT count(post_id) as `posts`,
 
 
 $stmt = $pdo->query($sql);
-
 $countProfile = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+
 $pdo = '';
-
-// var_dump($countProfile);
-
 
 include_once '../View/view-profile.php';

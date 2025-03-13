@@ -10,7 +10,6 @@ $errors = [];
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-    // var_dump($_POST);
     if (isset($_POST['lastname'])) {
         if (empty($_POST['lastname'])) {
             $errors['lastname'] = "Rentrez un nom";
@@ -30,15 +29,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $pdo = new PDO('mysql:host=' . DB_HOST . ';dbname=' . DB_NAME . ';charset=utf8', DB_USER, DB_PASS);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+    // Vérifie si l'utilisateur n'existe pas déjà
     $sql = "SELECT * FROM `76_users` WHERE `user_pseudo` = :pseudo";
-
     $stmt = $pdo->prepare($sql);
     $stmt->bindValue(':pseudo', $_POST['pseudo'], PDO::PARAM_STR);
-
     $stmt->execute();
-
     $stmt->rowCount() == 0 ? $foundUsername = false : $foundUsername = true;
-
     $pdo = "";
 
 
@@ -64,15 +60,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $pdo = new PDO('mysql:host=' . DB_HOST . ';dbname=' . DB_NAME . ';charset=utf8', DB_USER, DB_PASS);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+    // Vérifie si le mail n'est pas déjà utilisé
     $sql = "SELECT * FROM `76_users` WHERE `user_mail` = :mail";
-
     $stmt = $pdo->prepare($sql);
     $stmt->bindValue(':mail', $_POST['mail'], PDO::PARAM_STR);
-
     $stmt->execute();
-
     $stmt->rowCount() == 0 ? $foundMail = false : $foundMail = true;
-
     $pdo = "";
 
 
@@ -110,12 +103,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     if (empty($errors)) {
-        // connexion BDD
+
         $pdo = new PDO('mysql:host=' . DB_HOST . ';dbname=' . DB_NAME . ';charset=utf8', DB_USER, DB_PASS);
-        // options avancées
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        // requête SQL création users avec marqueur nominatifs
+        // Ajoute l'utilisateur à la base de données
         $sql = "INSERT INTO
                 `76_users` (
                     `user_gender`,
@@ -158,7 +150,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             exit;
         }
 
-        // On supprime l'instance PDO
         $pdo = '';
     }
 }

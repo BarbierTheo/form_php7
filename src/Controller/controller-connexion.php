@@ -28,21 +28,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         $pdo = new PDO('mysql:host=' . DB_HOST . ';dbname=' . DB_NAME . ';charset=utf8', DB_USER, DB_PASS);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        // Vérifie si le mail ou le pseudo de l'utilisateur existe bien
         $sql = "SELECT * FROM 76_users WHERE user_pseudo = :login OR user_mail = :login;";
-
-
         $stmt = $pdo->prepare($sql);
         $stmt->bindValue(':login', $_POST['login'], PDO::PARAM_STR);
-
         $stmt->execute();
-
         $stmt->rowCount() == 0 ? $found = false : $found = true;
-
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($found == false) {
             $errors['connexion'] = 'Identifiant ou mot de passe inccorect';
         } else {
+            // Vérifie le mot de passe de l'utilisateur
             if (password_verify($_POST['password'], $user['user_password'])) {
                 $_SESSION = $user;
                 unset($_SESSION['user_password']);

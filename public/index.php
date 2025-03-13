@@ -6,16 +6,17 @@
 <main class="lg:max-w-[800px] mx-auto pt-14 min-h-[90vh]">
     <section class="w-full mt-16 lg:mt-8 py-4 flex flex-col gap-6">
 
-
-
-
-        <?php foreach ($allPosts as $value) {
+        <?php
+        $iteration = -1;
+        foreach ($allPosts as $value) {
+            $iteration++;
         ?>
 
             <div class="flex flex-col gap-3">
+
                 <div class="flex px-4 gap-4 items-center justify-between">
                     <div class="flex gap-4 items-center">
-                        <div class="skeleton h-15 w-15 rounded-full"></div>
+                        <div class="h-15 w-15 rounded-full"><img src="../../assets/img/<?= $value['user_avatar'] ?>" alt=""></div>
                         <div class="flex flex-col justify-center">
                             <a href="controller-otherprofile.php?user=<?= $value['user_id'] ?>" class="font-semibold text-lg"><?= $value['user_pseudo'] ?></a>
                             <span><?= date("d-m-Y", $value['post_timestamp']) ?></span>
@@ -33,27 +34,25 @@
                 </div>
 
                 <div class="px-3 flex flex-col gap-2">
-                    <div class="flex gap-4">
-                        <div class="flex gap-1 items-start cursor-pointer hover:underline">
-
-                            <button class="flex gap-1 cursor-pointer hover:underline">
+                    <div class="flex gap-4 items-center">
+                        <div class="flex gap-1 items-center cursor-pointer hover:underline">
+                            <button class="flex gap-1 items-center cursor-pointer hover:underline">
                                 <?php if (alreadyLiked($value['post_id'], $pdo)) { ?>
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#84ad21" class="size-8">
                                         <path d="m11.645 20.91-.007-.003-.022-.012a15.247 15.247 0 0 1-.383-.218 25.18 25.18 0 0 1-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0 1 12 5.052 5.5 5.5 0 0 1 16.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 0 1-4.244 3.17 15.247 15.247 0 0 1-.383.219l-.022.012-.007.004-.003.001a.752.752 0 0 1-.704 0l-.003-.001Z" />
                                     </svg>
-                                    <?php } else { ?>
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                                            <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" />
-                                        </svg>
-                                        <?php } ?>
-                                        
-                                        <span class="font-semibold"><?= showLikes($value['post_id'], $pdo)['likes'] ?></span>
-                                    </button>
-                                    <label for="my_modal_7" class="font-semibold">likes</label>
-                                </div>
-                                    
-                        <button class="flex gap-1 cursor-pointer hover:underline">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                <?php } else { ?>
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="#84ad21" class="size-8">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" />
+                                    </svg>
+                                <?php } ?>
+                                <span class="font-semibold"><?= showLikes($value['post_id'], $pdo)['likes'] ?></span>
+                            </button>
+                            <label for="my_modal_<?= $iteration ?>" class="font-semibold">likes</label>
+                        </div>
+
+                        <button class="flex gap-1 items-center cursor-pointer hover:underline">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="#84ad21" class="size-8">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 20.25c4.97 0 9-3.694 9-8.25s-4.03-8.25-9-8.25S3 7.444 3 12c0 2.104.859 4.023 2.273 5.48.432.447.74 1.04.586 1.641a4.483 4.483 0 0 1-.923 1.785A5.969 5.969 0 0 0 6 21c1.282 0 2.47-.402 3.445-1.087.81.22 1.668.337 2.555.337Z" />
                             </svg>
                             <span class="font-semibold"><?= showComments($value['post_id'], $pdo)['comments'] ?> commentaires</span>
@@ -65,34 +64,63 @@
                     </span>
 
                     <div class="flex flex-col items-start gap-1">
-                        <?php foreach (showAllComments($value['post_id'], $pdo) as $value) { ?>
+                        <?php
+                        if (count(showAllComments($value['post_id'], $pdo)) >= 3) {
+                            for ($i = 0; $i < 3; $i++) {
+                                $darker = 100 - ($i * 20); ?>
 
-                            <div>
-                                <a href="controller-otherprofile.php?user=<?= $value['user_id'] ?>" class="font-semibold hover:underline"><?= $value['user_pseudo'] ?></a>
-                                <span><?= $value['com_text'] ?></span>
-                            </div>
+                                <div class="text-zinc-900/<?= $darker ?>">
+                                    <a href="controller-otherprofile.php?user=<?= showAllComments($value['post_id'], $pdo)[$i]['user_id'] ?>" class="font-semibold hover:underline"><?= showAllComments($value['post_id'], $pdo)[$i]['user_pseudo'] ?></a>
+                                    <span><?= showAllComments($value['post_id'], $pdo)[$i]['com_text'] ?></span>
+                                </div>
 
-                        <?php } ?>
+                            <?php }
+                        } else {
+                            foreach (showAllComments($value['post_id'], $pdo) as $value) { ?>
+                                <div>
+                                    <a href="controller-otherprofile.php?user=<?= $value['user_id'] ?>" class="font-semibold hover:underline"><?= $value['user_pseudo'] ?></a>
+                                    <span><?= $value['com_text'] ?? "" ?></span>
+                                </div>
+                        <?php   }
+                        } ?>
                         <a href="/src/Controller/controller-post.php?post=<?= $value['post_id'] ?>" class="text-zinc-500 py-1">Voir le post entier</a>
                     </div>
                 </div>
             </div>
 
-            <input type="checkbox" id="my_modal_7" class="modal-toggle" />
+            <!-- Modal -->
+            <input type="checkbox" id="my_modal_<?= $iteration ?>" class="modal-toggle" />
             <div class="modal" role="dialog">
                 <div class="modal-box">
-                    <h3 class="text-lg font-bold">Hello!</h3>
-                    <p class="py-4">This modal works with a hidden checkbox!</p>
-                </div>
-                <label class="modal-backdrop" for="my_modal_7">Close</label>
-            </div>
+                    <h3 class="text-lg font-bold">Likes</h3>
+                    <div class="flex flex-col mt-4 gap-4">
 
+                        <?php
+                        if (count(showAllLikes($value['post_id'], $pdo)) >= 1) {
+                            foreach (showAllLikes($value['post_id'], $pdo) as $value) { ?>
+
+                                <div class="flex gap-4">
+                                    <div class="w-10 h-10"><img src="../../assets/img/<?= $value['user_avatar'] ?>" alt=""></div>
+                                    <a href="controller-otherprofile.php?user=<?= $value['user_id'] ?>" class="flex flex-col">
+                                        <span class="font-semibold"><?= $value['user_pseudo'] ?></span>
+                                        <span class="text-sm">Consulter le profil</span>
+
+                                    </a>
+                                </div>
+
+                            <?php }
+                        } else { ?>
+                            <span class="text-zinc-600">Personne n'a encore liké ce post</span>
+                        <?php } ?>
+
+                    </div>
+                </div>
+                <label class="modal-backdrop" for="my_modal_<?= $iteration ?>">Close</label>
+            </div>
 
         <?php } ?>
 
     </section>
-
-
 </main>
 
 

@@ -13,7 +13,8 @@ if (!isset($_SESSION['user_id'])) {
 $pdo = new PDO('mysql:host=' . DB_HOST . ';dbname=' . DB_NAME . ';charset=utf8', DB_USER, DB_PASS);
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-$sql = "SELECT `post_timestamp`, `post_description`, `pic_name`, `user_pseudo`,`user_id`, `post_id`  FROM `76_posts`
+// Requête pour chacun des posts qui s'affichera dans l'index
+$sql = "SELECT `post_timestamp`, `post_description`, `pic_name`, `user_pseudo`,`user_id`, `post_id`, `user_avatar`  FROM `76_posts`
         NATURAL JOIN 76_pictures 
         NATURAL JOIN 76_users 
         WHERE `user_id` in (
@@ -27,7 +28,6 @@ $stmt = $pdo->prepare($sql);
 $stmt->execute();
 
 $allPosts = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
 
 
 include_once '../../public/index.php';

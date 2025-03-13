@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr" data-theme="lemonade">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
@@ -9,4 +9,5 @@
     <link rel="stylesheet" href="../../assets/css/normalize.css">
     <link rel="stylesheet" href="../../assets/css/tailwind.css">
 </head>
+
 <body>

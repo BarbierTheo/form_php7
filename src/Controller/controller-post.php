@@ -23,7 +23,7 @@ $existantPost = $stmt->fetch(PDO::FETCH_ASSOC);
 
 if (isset($_GET['post']) and $existantPost) {
     // Récupère toutes les informations du post contenu dans l'URL si il existe
-    $sql = "SELECT post_description, pic_name, user_pseudo, post_timestamp, user_id, post_id FROM 76_posts
+    $sql = "SELECT post_description, pic_name, user_pseudo, post_timestamp, user_id, post_id, user_avatar FROM 76_posts
             NATURAL JOIN 76_pictures
             NATURAL JOIN 76_users
             WHERE post_id = :pic_id";

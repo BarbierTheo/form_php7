@@ -4,7 +4,13 @@
 <main class="lg:max-w-[800px] w-screen mx-auto pt-38 lg:pt-26 min-h-[90vh]">
     <section class="flex justify-between lg:justify-center px-4 lg:px-8 w-full gap-0 lg:gap-16">
         <div class="flex items-center min-w-[50%]">
-            <div class="w-32 h-32 lg:w-42 lg:h-42 bg-cover bg-center rounded-full self-center"><img src="../../assets/img/<?= $profile['user_avatar'] ?>" alt=""></div>
+        <div class="flex items-center min-w-[50%]">
+            <div class="avatar">
+                <div class="w-32 rounded-full">
+                    <img src="../../assets/img/<?= $profile['user_avatar'] ?>" />
+                </div>
+            </div>
+        </div>
         </div>
         <div class="flex flex-col gap-2 lg:gap-4 min-w-[50%]">
             <div class="flex flex-col lg:flex-row gap-1 lg:gap-4">

@@ -16,7 +16,13 @@
 
                 <div class="flex px-4 gap-4 items-center justify-between">
                     <div class="flex gap-4 items-center">
-                        <div class="h-15 w-15 rounded-full"><img src="../../assets/img/<?= $value['user_avatar'] ?>" alt=""></div>
+
+                        <div class="avatar">
+                            <div class="w-15 rounded-full">
+                                <img src="../../assets/img/<?= $value['user_avatar'] ?>" />
+                            </div>
+                        </div>
+
                         <div class="flex flex-col justify-center">
                             <a href="controller-otherprofile.php?user=<?= $value['user_id'] ?>" class="font-semibold text-lg"><?= $value['user_pseudo'] ?></a>
                             <span><?= date("d-m-Y", $value['post_timestamp']) ?></span>
@@ -65,8 +71,9 @@
 
                     <div class="flex flex-col items-start gap-1">
                         <?php
-                        if (count(showAllComments($value['post_id'], $pdo)) >= 3) {
-                            for ($i = 0; $i < 3; $i++) {
+                        if (count(showAllComments($value['post_id'], $pdo)) >= 5) {
+                            // Pour assombrir les commentaires de plus en plus
+                            for ($i = 0; $i < 5; $i++) {
                                 $darker = 100 - ($i * 20); ?>
 
                                 <div class="text-zinc-900/<?= $darker ?>">

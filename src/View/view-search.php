@@ -12,7 +12,7 @@
             </svg>
             <input type="text" placeholder="Rechercher un utilisateur" name="pseudo" />
         </label>
-        <button class="btn btn-outline" type="submit">Rechercher</button>
+        <button class="btn btn-outline btn-primary text-zinc-800 hover:text-zinc-50" type="submit">Rechercher</button>
     </form>
 
     <section class="mt-8 px-1 lg:px-0">

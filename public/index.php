@@ -16,7 +16,7 @@
 
                 <div class="flex px-4 gap-4 items-center justify-between">
                     <div class="flex gap-4 items-center">
-
+                        <!-- En tête : Avatar, date du post, bouton suivre et bouton détails -->
                         <div class="avatar">
                             <div class="w-15 rounded-full">
                                 <img src="../../assets/img/<?= $value['user_avatar'] ?>" />
@@ -28,17 +28,28 @@
                             <span><?= date("d-m-Y", $value['post_timestamp']) ?></span>
                         </div>
                     </div>
-                    <button href="" class="cursor-pointer hover:bg-base-300 p-1 rounded-full">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM12.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM18.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
-                        </svg>
-                    </button>
-                </div>
 
+                    <div class="flex items-center gap-4">
+                        <button class="btn btn-sm bg-[#84ad21] text-white">Suivre</button>
+                        <?php if ($value['user_id'] == $_SESSION['user_id']) { ?>
+                            <div class="dropdown">
+                                <div tabindex="0" role="button" class="cursor-pointer hover:bg-base-300 p-1 rounded-full"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM12.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM18.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
+                                    </svg></div>
+                                <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
+                                    <li><a href="controller-deletepost.php?post=<?= $value['post_id'] ?>" class="text-red-700">Supprimer la photo</a></li>
+                                </ul>
+                            </div>
+                        <?php } ?>
+                    </div>
+
+                </div>
+                <!-- Image du post -->
                 <div class="px-2">
                     <div class="bg-[url(../../assets/img/users/<?= $value['user_id'] ?>/<?= $value['pic_name'] ?>)] bg-cover bg-center w-full h-[23rem] sm:h-[38rem] lg:h-[45rem]"></div>
                 </div>
 
+                <!-- Likes et commentaires du post -->
                 <div class="px-3 flex flex-col gap-2">
                     <div class="flex gap-4 items-center">
                         <div class="flex gap-1 items-center cursor-pointer hover:underline">
@@ -95,7 +106,7 @@
                 </div>
             </div>
 
-            <!-- Modal -->
+            <!-- Modal des likes -->
             <input type="checkbox" id="my_modal_<?= $iteration ?>" class="modal-toggle" />
             <div class="modal" role="dialog">
                 <div class="modal-box">
@@ -107,7 +118,7 @@
                             foreach (showAllLikes($value['post_id'], $pdo) as $value) { ?>
 
                                 <div class="flex gap-4">
-                                    <div class="w-10 h-10"><img src="../../assets/img/<?= $value['user_avatar'] ?>" alt=""></div>
+                                    <div class="w-10 h-10"><img src="../../assets/img/<?= $value['user_avatar'] ?>" alt="" class="rounded-xl"></div>
                                     <a href="controller-otherprofile.php?user=<?= $value['user_id'] ?>" class="flex flex-col">
                                         <span class="font-semibold"><?= $value['user_pseudo'] ?></span>
                                         <span class="text-sm">Consulter le profil</span>

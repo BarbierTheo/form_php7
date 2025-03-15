@@ -7,20 +7,29 @@
 
         <div class="flex px-1 gap-4 items-center justify-between">
             <div class="flex gap-4 items-center">
-            <div class="avatar">
-                            <div class="w-15 rounded-full">
-                                <img src="../../assets/img/<?= $uniquePost['user_avatar'] ?>" />
-                            </div>
-                        </div>
+                <div class="avatar">
+                    <div class="w-15 rounded-full">
+                        <img src="../../assets/img/<?= $uniquePost['user_avatar'] ?>" />
+                    </div>
+                </div>
                 <div class="flex flex-col justify-center">
                     <a href="controller-otherprofile.php?user=<?= $uniquePost['user_id'] ?>" class="font-semibold text-lg"><?= $uniquePost['user_pseudo'] ?></a>
                     <span><?= date("d-m-Y", $uniquePost['post_timestamp']) ?></span>
                 </div>
             </div>
-            <button href="" class="cursor-pointer hover:bg-base-300 p-1 rounded-full"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM12.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM18.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
-                </svg>
-            </button>
+            <div class="flex items-center gap-4">
+                <button class="btn btn-sm bg-[#84ad21] text-white">Suivre</button>
+                <?php if ($uniquePost['user_id'] == $_SESSION['user_id']) { ?>
+                    <div class="dropdown">
+                        <div tabindex="0" role="button" class="cursor-pointer hover:bg-base-300 p-1 rounded-full"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM12.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM18.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
+                            </svg></div>
+                        <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
+                            <li><a href="controller-deletepost.php?post=<?= $uniquePost['post_id'] ?>" class="text-red-700">Supprimer la photo</a></li>
+                        </ul>
+                    </div>
+                <?php } ?>
+            </div>
         </div>
 
         <img src="../../assets/img/users/<?= $uniquePost['user_id'] . "/" . $uniquePost['pic_name'] ?>" alt="">

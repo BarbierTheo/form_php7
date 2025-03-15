@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr" data-theme="lemonade">
+<html lang="fr" data-theme="<?= $_SESSION['theme'][0] ?? "lemonade" ?>">
 
 <head>
     <meta charset="UTF-8">

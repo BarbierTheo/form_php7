@@ -63,8 +63,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (empty($errors)) {
 
         // Ajout du commentaire validé
-        $sql = "INSERT INTO `76_comments` (`com_text`, `post_id`, `user_id`) VALUES
-            ('" . ($_POST['newComment']) . "', " .  $_GET['post'] . ", " . $_SESSION['user_id'] . " )";
+        $sql = "INSERT INTO `76_comments` (`com_text`, `post_id`, `user_id`, `com_timestamp`) VALUES
+            ('" . ($_POST['newComment']) . "', " .  $_GET['post'] . ", " . $_SESSION['user_id'] . ", " . time() . " )";
         $stmt = $pdo->prepare($sql);
         $stmt->execute();
     }

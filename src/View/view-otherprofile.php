@@ -4,18 +4,23 @@
 <main class="lg:max-w-[800px] w-screen mx-auto pt-38 lg:pt-26 min-h-[90vh]">
     <section class="flex justify-between lg:justify-center px-4 lg:px-8 w-full gap-0 lg:gap-16">
         <div class="flex items-center min-w-[50%]">
-        <div class="flex items-center min-w-[50%]">
-            <div class="avatar">
-                <div class="w-32 rounded-full">
-                    <img src="../../assets/img/<?= $profile['user_avatar'] ?>" />
+            <div class="flex items-center min-w-[50%]">
+                <div class="avatar">
+                    <div class="w-32 rounded-full">
+                        <img src="../../assets/img/<?= $profile['user_avatar'] ?>" />
+                    </div>
                 </div>
             </div>
-        </div>
         </div>
         <div class="flex flex-col gap-2 lg:gap-4 min-w-[50%]">
             <div class="flex flex-col lg:flex-row gap-1 lg:gap-4">
                 <span class="font-semibold text-xl"><?= $countProfile[0]['user_pseudo'] ?></span>
-                <button class="btn btn-sm bg-[#84ad21]">Suivre</button>
+
+                <?php if (!alreadyFollow($_SESSION['user_id'], $_GET['user'], $pdo)) { ?>
+                    <button class="btn btn-sm bg-[#84ad21] text-white">Suivre</button>
+                <?php } else { ?>
+                    <button class="btn btn-sm bg-base-300">Ne plus suivre</button>
+                <?php } ?>
             </div>
             <div class="flex gap-1 lg:gap-4 flex-col lg:flex-row max-md:text-sm">
                 <span class="lg:text-zinc-400"><span class="font-semibold text-zinc-900 "><?= $countProfile[0]['posts'] ?? '0' ?></span> publications</span>

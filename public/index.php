@@ -11,7 +11,6 @@
         foreach ($allPosts as $value) {
             $iteration++;
         ?>
-
             <div class="flex flex-col gap-3">
 
                 <div class="flex px-4 gap-4 items-center justify-between">
@@ -30,7 +29,6 @@
                     </div>
 
                     <div class="flex items-center gap-4">
-                        <button class="btn btn-sm bg-[#84ad21] text-white">Suivre</button>
                         <?php if ($value['user_id'] == $_SESSION['user_id']) { ?>
                             <div class="dropdown">
                                 <div tabindex="0" role="button" class="cursor-pointer hover:bg-base-300 p-1 rounded-full"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
@@ -42,7 +40,6 @@
                             </div>
                         <?php } ?>
                     </div>
-
                 </div>
                 <!-- Image du post -->
                 <div class="px-2">
@@ -87,7 +84,7 @@
                             for ($i = 0; $i < 5; $i++) {
                                 $darker = 100 - ($i * 20); ?>
 
-                                <div class="text-zinc-900/<?= $darker ?>">
+                                <div class="text-zinc-900/<?= $darker ?> break-words w-full">
                                     <a href="controller-otherprofile.php?user=<?= showAllComments($value['post_id'], $pdo)[$i]['user_id'] ?>" class="font-semibold hover:underline"><?= showAllComments($value['post_id'], $pdo)[$i]['user_pseudo'] ?></a>
                                     <span><?= showAllComments($value['post_id'], $pdo)[$i]['com_text'] ?></span>
                                 </div>
@@ -95,7 +92,7 @@
                             <?php }
                         } else {
                             foreach (showAllComments($value['post_id'], $pdo) as $value) { ?>
-                                <div>
+                                <div class="break-words w-full">
                                     <a href="controller-otherprofile.php?user=<?= $value['user_id'] ?>" class="font-semibold hover:underline"><?= $value['user_pseudo'] ?></a>
                                     <span><?= $value['com_text'] ?? "" ?></span>
                                 </div>

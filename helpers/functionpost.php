@@ -121,3 +121,27 @@ function showAllLikes($post_id, $pdo)
     $pdo = '';
     return $likesFunction;
 }
+
+/**
+ * Vérifie si le user connecté follow l'utilisateur 
+ * 
+ * @param INT $user_id l'ID de l'utilisateur connecté
+ * @param INT $user_id2 l'ID de l'utilisateur follow ou non
+ * @return boolean $followed Résultat du follow si vide non follow
+ * 
+ */
+function alreadyFollow($user_id, $user_id2, $pdo)
+{
+    if ($user_id == $user_id2) {
+        $followed = true;
+    } else {
+        $sql = "SELECT * FROM `76_favorites` WHERE `user_id` = " . $user_id . " AND `fav_id` = " . $user_id2 . ";";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute();
+
+        $follow = $stmt->fetch(PDO::FETCH_ASSOC);
+        $follow == null ? $followed = false : $followed = true;
+    }
+    $pdo = '';
+    return $followed;
+}

@@ -4652,6 +4652,9 @@
     font-size: var(--text-xs);
     line-height: var(--tw-leading, var(--text-xs--line-height));
   }
+  .mt-1 {
+    margin-top: calc(var(--spacing) * 1);
+  }
   .mt-2 {
     margin-top: calc(var(--spacing) * 2);
   }
@@ -5342,6 +5345,10 @@
     width: var(--size);
     height: var(--size);
   }
+  .size-3 {
+    width: calc(var(--spacing) * 3);
+    height: calc(var(--spacing) * 3);
+  }
   .size-4 {
     width: calc(var(--spacing) * 4);
     height: calc(var(--spacing) * 4);
@@ -5561,6 +5568,9 @@
   }
   .loading-xs {
     width: calc(var(--size-selector, 0.25rem) * 4);
+  }
+  .w-1 {
+    width: calc(var(--spacing) * 1);
   }
   .w-1\/2 {
     width: calc(1/2 * 100%);
@@ -6720,6 +6730,9 @@
   .border-base-300 {
     border-color: var(--color-base-300);
   }
+  .border-lime-600 {
+    border-color: var(--color-lime-600);
+  }
   .border-lime-600\/40 {
     border-color: color-mix(in oklab, var(--color-lime-600) 40%, transparent);
   }
@@ -6865,8 +6878,14 @@
   .bg-red-500\/\[50\%\] {
     background-color: color-mix(in oklab, var(--color-red-500) 50%, transparent);
   }
+  .bg-red-700 {
+    background-color: var(--color-red-700);
+  }
   .bg-red-700\/50 {
     background-color: color-mix(in oklab, var(--color-red-700) 50%, transparent);
+  }
+  .bg-zinc-900 {
+    background-color: var(--color-zinc-900);
   }
   .bg-zinc-900\/50 {
     background-color: color-mix(in oklab, var(--color-zinc-900) 50%, transparent);
@@ -7127,6 +7146,9 @@
       --size: calc(var(--size-selector, 0.25rem) * 4);
     }
   }
+  .p-0 {
+    padding: calc(var(--spacing) * 0);
+  }
   .p-1 {
     padding: calc(var(--spacing) * 1);
   }
@@ -7245,6 +7267,9 @@
     &::file-selector-button {
       font-size: 1.375rem;
     }
+  }
+  .pt-1 {
+    padding-top: calc(var(--spacing) * 1);
   }
   .pt-14 {
     padding-top: calc(var(--spacing) * 14);
@@ -7811,6 +7836,9 @@
   }
   .progress-warning {
     color: var(--color-warning);
+  }
+  .text-lime-600 {
+    color: var(--color-lime-600);
   }
   .text-lime-600\/20 {
     color: color-mix(in oklab, var(--color-lime-600) 20%, transparent);

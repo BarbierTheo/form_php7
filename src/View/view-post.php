@@ -18,8 +18,12 @@
                 </div>
             </div>
             <div class="flex items-center gap-4">
-                <button class="btn btn-sm bg-[#84ad21] text-white">Suivre</button>
+                <?php if (!alreadyFollow($_SESSION['user_id'], $uniquePost['user_id'], $pdo)) { ?>
+                    <button class="btn btn-sm bg-[#84ad21] text-white">Suivre</button>
+                <?php } ?>
+
                 <?php if ($uniquePost['user_id'] == $_SESSION['user_id']) { ?>
+
                     <div class="dropdown">
                         <div tabindex="0" role="button" class="cursor-pointer hover:bg-base-300 p-1 rounded-full"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM12.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM18.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
@@ -28,7 +32,9 @@
                             <li><a href="controller-deletepost.php?post=<?= $uniquePost['post_id'] ?>" class="text-red-700">Supprimer la photo</a></li>
                         </ul>
                     </div>
+
                 <?php } ?>
+
             </div>
         </div>
 
@@ -60,15 +66,23 @@
                 </button>
             </div>
 
-            <span class="">
+            <span class="break-words">
                 <?= $uniquePost['post_description'] ?>
             </span>
 
             <div class="flex flex-col items-start gap-1">
                 <?php foreach (showAllComments($uniquePost['post_id'], $pdo) as $value) { ?>
 
-                    <div>
-                        <a href="" class="font-semibold hover:underline"><?= $value['user_pseudo'] ?></a>
+                    <div class="break-words w-full">
+                        <?php if ($value['user_id'] == $_SESSION['user_id']) { ?>
+                            <button class="">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor" class="size-4">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+                                </svg>
+
+                            </button>
+                        <?php } ?>
+                        <a href="controller-otherprofile.php?user=<?= $value['user_id'] ?>" class="font-semibold hover:underline"><?= $value['user_pseudo'] ?></a>
                         <span><?= $value['com_text'] ?></span>
                     </div>
 
@@ -84,6 +98,7 @@
             <small class="text-red-400"><?= $errors['newComment'] ?? "" ?></small>
         </div>
     </section>
+
     <!-- Modal -->
     <input type="checkbox" id="my_modal" class="modal-toggle" />
     <div class="modal" role="dialog">

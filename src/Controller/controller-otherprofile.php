@@ -6,8 +6,11 @@ require_once '../../config.php';
 $pdo = new PDO('mysql:host=' . DB_HOST . ';dbname=' . DB_NAME . ';charset=utf8', DB_USER, DB_PASS);
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+
+require '../../helpers/functionpost.php';
+
 // Récupère l'avatar et la description de l'utilisateur contenu dans l'URL
-$sql = "SELECT `user_avatar`, `user_description` FROM `76_users` WHERE `user_id` = " . $_GET['user'];
+$sql = "SELECT `user_avatar`, `user_description`, `user_id` FROM `76_users` WHERE `user_id` = " . $_GET['user'];
 $stmt = $pdo->query($sql);
 $profile = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -48,6 +51,5 @@ $sql = "SELECT count(post_id) as `posts`,
 $stmt = $pdo->query($sql);
 $countProfile = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-$pdo = '';
 
 include_once '../View/view-otherprofile.php';

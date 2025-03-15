@@ -1,6 +1,6 @@
 <?php include_once '../../templates/head.php'  ?>
 
-    <div class="w-screen h-screen flex justify-center items-center bg-zinc-900/50 fixed" id="interface">
+    <div class="w-screen h-screen flex justify-center items-center fixed bg-base-100" id="interface">
         <div class="min-w-[90%] lg:min-w-[50rem] bg-base-300 rounded-2xl p-8 flex justify-center items-center shadow-md">
             <div class="flex flex-col w-full gap-4">
 
@@ -57,4 +57,4 @@
         </div>
     </div>
 
-    <?php include_once '../../templates/footer.php'  ?>
+    <?php include_once '../../templates/end.php'  ?>

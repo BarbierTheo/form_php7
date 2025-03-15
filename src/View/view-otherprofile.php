@@ -23,9 +23,9 @@
                 <?php } ?>
             </div>
             <div class="flex gap-1 lg:gap-4 flex-col lg:flex-row max-md:text-sm">
-                <span class="lg:text-zinc-400"><span class="font-semibold text-zinc-900 "><?= $countProfile[0]['posts'] ?? '0' ?></span> publications</span>
-                <span class="lg:text-zinc-400"><span class="font-semibold text-zinc-900 "><?= $countProfile[0]['followers'] ?? '0' ?></span> followers</span>
-                <span class="lg:text-zinc-400"><span class="font-semibold text-zinc-900 "><?= $countProfile[0]['follows'] ?? '0' ?></span> suivi(e)s</span>
+                <span class="lg:text-zinc-400"><span class="font-semibold text-base-content"><?= $countProfile[0]['posts'] ?? '0' ?></span> publications</span>
+                <span class="lg:text-zinc-400"><span class="font-semibold text-base-content"><?= $countProfile[0]['followers'] ?? '0' ?></span> followers</span>
+                <span class="lg:text-zinc-400"><span class="font-semibold text-base-content"><?= $countProfile[0]['follows'] ?? '0' ?></span> suivi(e)s</span>
             </div>
             <span><?= $profile['user_description'] ?></span>
         </div>

@@ -11,8 +11,10 @@ if (!isset($_SESSION['user_id']) or $_GET['post'] == "") {
 $pdo = new PDO('mysql:host=' . DB_HOST . ';dbname=' . DB_NAME . ';charset=utf8', DB_USER, DB_PASS);
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+include '../../helpers/functionpost.php';
+
 // Requête pour récupérer l'image et l'ID du user
-$sql = "SELECT `user_id`, `pic_name` FROM `76_posts`
+$sql = "SELECT `user_id`, `pic_name`, `post_id` FROM `76_posts`
         NATURAL JOIN 76_pictures 
         NATURAL JOIN 76_users 
         WHERE `post_id` = " . $_GET['post'];

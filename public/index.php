@@ -84,7 +84,7 @@
                             for ($i = 0; $i < 5; $i++) {
                                 $darker = 100 - ($i * 20); ?>
 
-                                <div class="text-zinc-900/<?= $darker ?> break-words w-full">
+                                <div class="text-base-content/<?= $darker ?> break-words w-full">
                                     <a href="controller-otherprofile.php?user=<?= showAllComments($value['post_id'], $pdo)[$i]['user_id'] ?>" class="font-semibold hover:underline"><?= showAllComments($value['post_id'], $pdo)[$i]['user_pseudo'] ?></a>
                                     <span><?= showAllComments($value['post_id'], $pdo)[$i]['com_text'] ?></span>
                                 </div>

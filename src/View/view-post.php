@@ -75,27 +75,48 @@
 
                     <div class="break-words w-full">
                         <?php if ($value['user_id'] == $_SESSION['user_id']) { ?>
-                            <button class="">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor" class="size-4">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
-                                </svg>
 
-                            </button>
+                            <div class="dropdown">
+                                <div tabindex="0" role="button" class="btn btn-xs">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-4">
+                                        <path fill-rule="evenodd" d="M11.078 2.25c-.917 0-1.699.663-1.85 1.567L9.05 4.889c-.02.12-.115.26-.297.348a7.493 7.493 0 0 0-.986.57c-.166.115-.334.126-.45.083L6.3 5.508a1.875 1.875 0 0 0-2.282.819l-.922 1.597a1.875 1.875 0 0 0 .432 2.385l.84.692c.095.078.17.229.154.43a7.598 7.598 0 0 0 0 1.139c.015.2-.059.352-.153.43l-.841.692a1.875 1.875 0 0 0-.432 2.385l.922 1.597a1.875 1.875 0 0 0 2.282.818l1.019-.382c.115-.043.283-.031.45.082.312.214.641.405.985.57.182.088.277.228.297.35l.178 1.071c.151.904.933 1.567 1.85 1.567h1.844c.916 0 1.699-.663 1.85-1.567l.178-1.072c.02-.12.114-.26.297-.349.344-.165.673-.356.985-.57.167-.114.335-.125.45-.082l1.02.382a1.875 1.875 0 0 0 2.28-.819l.923-1.597a1.875 1.875 0 0 0-.432-2.385l-.84-.692c-.095-.078-.17-.229-.154-.43a7.614 7.614 0 0 0 0-1.139c-.016-.2.059-.352.153-.43l.84-.692c.708-.582.891-1.59.433-2.385l-.922-1.597a1.875 1.875 0 0 0-2.282-.818l-1.02.382c-.114.043-.282.031-.449-.083a7.49 7.49 0 0 0-.985-.57c-.183-.087-.277-.227-.297-.348l-.179-1.072a1.875 1.875 0 0 0-1.85-1.567h-1.843ZM12 15.75a3.75 3.75 0 1 0 0-7.5 3.75 3.75 0 0 0 0 7.5Z" clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                                <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
+                                    <li><a href="controller-post.php?post=<?= $value['post_id'] ?>&comment=<?= $value['com_id'] ?>">Modifier le commentaire</a></li>
+                                    <li><a href="controller-post.php?post=<?= $value['post_id'] ?>&comment=<?= $value['com_id'] ?>" class="text-red-700">Supprimer le commentaire</a></li>
+                                </ul>
+                            </div>
+
                         <?php } ?>
                         <a href="controller-otherprofile.php?user=<?= $value['user_id'] ?>" class="font-semibold hover:underline"><?= $value['user_pseudo'] ?></a>
                         <span><?= $value['com_text'] ?></span>
                     </div>
 
                 <?php } ?>
-
-
-                <button class="text-zinc-500 py-1 cursor-pointer">Voir les autres commentaires</button>
             </div>
-            <form class="w-full flex gap-4" method="post">
-                <input type="text" placeholder="Ajouter un commentaire" class="input input-ghost w-full" name="newComment">
-                <button class="btn btn-outline">Ajouter</button>
-            </form>
-            <small class="text-red-400"><?= $errors['newComment'] ?? "" ?></small>
+
+            <!-- Commentaire si non isset dans l'URL alors classique ajout de commentaire -->
+            <?php if (!isset($_GET['comment']) OR showOneComment($_GET['post'], $_GET['comment'], $pdo)[0]['user_id'] != $_SESSION['user_id']) { ?>
+
+                <form class="w-full flex gap-4 mt-2" method="post">
+                    <input type="text" placeholder="Ajouter un commentaire" class="input input-ghost w-full" name="newComment">
+                    <button class="btn btn-outline">Ajouter</button>
+                </form>
+                <small class="text-red-400"><?= $errors['newComment'] ?? "" ?></small>
+
+                <!-- Sinon modification voir suppression du commentaire -->
+            <?php  } else { ?>
+                <form class="w-full flex gap-4 mt-2" method="post">
+                    <input type="text" placeholder="<?= showOneComment($_GET['post'], $_GET['comment'], $pdo)[0]['com_text'] ?>" class="input input-ghost w-full" name="newComment">
+                    <button class="btn btn-outline">Modifier</button>
+                    <button class="btn text-zinc-50 bg-red-800/80">Supprimer</button>
+                </form>
+                <small class="text-red-400"><?= $errors['newComment'] ?? "" ?></small>
+
+
+            <?php } ?>
+
         </div>
     </section>
 

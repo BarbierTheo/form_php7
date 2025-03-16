@@ -122,10 +122,10 @@ function showOneComment($post_id, $com_id, $pdo)
 
     $stmt->execute();
 
-    $allComments = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $comment = $stmt->fetch(PDO::FETCH_ASSOC);
 
     $pdo = '';
-    return $allComments;
+    return $comment;
 }
 
 

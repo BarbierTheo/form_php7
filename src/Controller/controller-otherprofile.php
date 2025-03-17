@@ -2,12 +2,13 @@
 
 session_start();
 require_once '../../config.php';
+require '../Model/model-follows.php';
+
+
 
 $pdo = new PDO('mysql:host=' . DB_HOST . ';dbname=' . DB_NAME . ';charset=utf8', DB_USER, DB_PASS);
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-
-require '../../helpers/functionpost.php';
 
 // Récupère l'avatar et la description de l'utilisateur contenu dans l'URL
 $sql = "SELECT `user_avatar`, `user_description`, `user_id` FROM `76_users` WHERE `user_id` = " . $_GET['user'];

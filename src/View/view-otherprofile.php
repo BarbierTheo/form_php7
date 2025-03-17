@@ -16,7 +16,7 @@
             <div class="flex flex-col lg:flex-row gap-1 lg:gap-4">
                 <span class="font-semibold text-xl"><?= $countProfile[0]['user_pseudo'] ?></span>
 
-                <?php if (!alreadyFollow($_SESSION['user_id'], $_GET['user'], $pdo)) { ?>
+                <?php if (!Follows::alreadyFollow($_SESSION['user_id'], $_GET['user'], $pdo)) { ?>
                     <button class="btn btn-sm bg-[#84ad21] text-white">Suivre</button>
                 <?php } else { ?>
                     <button class="btn btn-sm bg-base-300">Ne plus suivre</button>

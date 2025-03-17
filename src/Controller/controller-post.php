@@ -1,6 +1,8 @@
 <?php
 include_once '../../config.php';
-include_once '../../helpers/functionpost.php';
+include_once '../Model/model-likes.php';
+include_once '../Model/model-comments.php';
+include_once '../Model/model-follows.php';
 session_start();
 
 if (!isset($_SESSION['user_id'])) {
@@ -11,7 +13,7 @@ if (!isset($_SESSION['user_id'])) {
 $pdo = new PDO('mysql:host=' . DB_HOST . ';dbname=' . DB_NAME . ';charset=utf8', DB_USER, DB_PASS);
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-if (isset($_GET['comment']) and !showOneComment($_GET['post'], $_GET['comment'], $pdo)) {
+if (isset($_GET['comment']) and !Comments::showOneComment($_GET['post'], $_GET['comment'], $pdo)) {
     header("Location: controller-post.php?post=" . $_GET['post']);
     exit;
 }

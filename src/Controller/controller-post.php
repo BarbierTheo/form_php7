@@ -8,9 +8,13 @@ if (!isset($_SESSION['user_id'])) {
     exit;
 }
 
-
 $pdo = new PDO('mysql:host=' . DB_HOST . ';dbname=' . DB_NAME . ';charset=utf8', DB_USER, DB_PASS);
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+if (isset($_GET['comment']) and !showOneComment($_GET['post'], $_GET['comment'], $pdo)) {
+    header("Location: controller-post.php?post=" . $_GET['post']);
+    exit;
+}
 
 // Requête pour récupérer toutes les informations d'un post pour vérifier qu'il existe bien
 $sql = "SELECT * FROM 76_posts

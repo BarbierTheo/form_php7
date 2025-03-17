@@ -2,7 +2,7 @@
 include_once '../../config.php';
 session_start();
 
-if (!isset($_SESSION['user_id']) or $_GET['post'] == "") {
+if (!isset($_SESSION['user_id']) OR $_GET['post'] == "") {
     header('Location: controller-connexion.php');
     exit;
 }

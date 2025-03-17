@@ -29,11 +29,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $errors['pic'] = "Veuillez choisir une photo";
     }
 
+    var_dump($_FILES);
 
     if (empty($errors)) {
         // Direction du fichier et rename
         $target_dir = "../../assets/img/users/" . $_SESSION["user_id"] . "/";
-        $target_file = $target_dir . basename($_FILES["pic"]["name"]);
+        $newName = uniqid() . "_" . basename($_FILES["pic"]["name"]);
+        $target_file = $target_dir . $newName;
         $uploadOk = 1;
         $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
@@ -80,7 +82,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         $stmt = $pdo->prepare($sql);
 
-        $stmt->bindValue(':pic_name', htmlspecialchars($_FILES['pic']['name']), PDO::PARAM_STR);
+        $stmt->bindValue(':pic_name', htmlspecialchars($newName), PDO::PARAM_STR);
         $stmt->bindValue(':post_id', $post_id, PDO::PARAM_INT);
 
         if ($stmt->execute()) {

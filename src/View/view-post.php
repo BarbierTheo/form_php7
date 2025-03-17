@@ -97,7 +97,7 @@
             </div>
 
             <!-- Commentaire si non isset dans l'URL alors classique ajout de commentaire -->
-            <?php if (!isset($_GET['comment']) OR showOneComment($_GET['post'], $_GET['comment'], $pdo)[0]['user_id'] != $_SESSION['user_id']) { ?>
+            <?php if (!isset($_GET['comment']) or !showOneComment($_GET['post'], $_GET['comment'], $pdo)) { ?>
 
                 <form class="w-full flex gap-4 mt-2" method="post">
                     <input type="text" placeholder="Ajouter un commentaire" class="input input-ghost w-full" name="newComment">
@@ -106,16 +106,24 @@
                 <small class="text-red-400"><?= $errors['newComment'] ?? "" ?></small>
 
                 <!-- Sinon modification voir suppression du commentaire -->
-            <?php  } else { ?>
-                <form class="w-full flex gap-4 mt-2" method="post">
-                    <input type="text" placeholder="<?= showOneComment($_GET['post'], $_GET['comment'], $pdo)[0]['com_text'] ?>" class="input input-ghost w-full" name="newComment">
-                    <button class="btn btn-outline">Modifier</button>
-                    <button class="btn text-zinc-50 bg-red-800/80">Supprimer</button>
-                </form>
-                <small class="text-red-400"><?= $errors['newComment'] ?? "" ?></small>
+                <?php  } else {
+                if (showOneComment($_GET['post'], $_GET['comment'], $pdo) == $_SESSION['user_id']) { ?>
+                    <form class="w-full flex gap-4 mt-2" method="post">
+                        <input type="text" placeholder="<?= showOneComment($_GET['post'], $_GET['comment'], $pdo)['com_text'] ?>" class="input input-ghost w-full" name="newComment">
+                        <button class="btn btn-outline">Modifier</button>
+                        <button class="btn text-zinc-50 bg-red-800/80">Supprimer</button>
+                    </form>
+                    <small class="text-red-400"><?= $errors['newComment'] ?? "" ?></small>
 
+                <?php } else { ?>
 
-            <?php } ?>
+                    <form class="w-full flex gap-4 mt-2" method="post">
+                        <input type="text" placeholder="Ajouter un commentaire" class="input input-ghost w-full" name="newComment">
+                        <button class="btn btn-outline">Ajouter</button>
+                    </form>
+                    <small class="text-red-400"><?= $errors['newComment'] ?? "" ?></small>
+
+            <?php }  } ?>
 
         </div>
     </section>

@@ -106,7 +106,7 @@ function showAllComments($post_id, $pdo)
  * 
  * @param INT $post_id l'ID du post
  * @param INT $com_id l'ID du commentaire
- * @return array $comment Commentaire sélectionné
+ * @return $comment Commentaire sélectionné
  * 
  */
 function showOneComment($post_id, $com_id, $pdo)
@@ -115,8 +115,7 @@ function showOneComment($post_id, $com_id, $pdo)
     $sql = "SELECT `com_text`, `user_id`, `post_id`, `com_id`, `user_pseudo`
         FROM 76_comments
         NATURAL JOIN 76_users
-        WHERE post_id = " . $post_id  . " AND com_id = " . $com_id . " 
-        ORDER BY com_timestamp";
+        WHERE post_id = " . $post_id  . " AND com_id = " . $com_id . ";";
 
     $stmt = $pdo->prepare($sql);
 

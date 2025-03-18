@@ -4,6 +4,7 @@ session_start();
 include_once '../../config.php';
 include_once '../Model/model-likes.php';
 include_once '../Model/model-comments.php';
+include_once '../Model/model-follows.php';
 
 if (!isset($_SESSION['user_id'])) {
     header('Location: controller-connexion.php');

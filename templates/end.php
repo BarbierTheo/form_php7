@@ -2,6 +2,7 @@
     <a href="" class="hover:underline text-zinc-500">Mentions légales</a>
 </footer>
 
+<script src="../../assets/js/script.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </body>
 

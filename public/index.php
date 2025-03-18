@@ -2,7 +2,6 @@
 
 <?php include_once '../../templates/header.php'  ?>
 
-
 <main class="lg:max-w-[800px] mx-auto pt-14 min-h-[90vh]">
     <section class="w-full mt-16 lg:mt-8 py-4 flex flex-col gap-6">
 
@@ -33,12 +32,21 @@
                             <div class="dropdown">
                                 <div tabindex="0" role="button" class="cursor-pointer hover:bg-base-300 p-1 rounded-full"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM12.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM18.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
-                                    </svg></div>
+                                    </svg>
+                                </div>
                                 <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
                                     <li><a href="controller-deletepost.php?post=<?= $value['post_id'] ?>" class="text-red-700">Supprimer la photo</a></li>
                                 </ul>
                             </div>
-                        <?php } ?>
+                            <div id="liked">
+                                <?php } else {
+                                if (!Follows::alreadyFollow($_SESSION['user_id'], $value['user_id'])) { ?>
+                                    <button class="btn btn-sm bg-[#84ad21] text-white" id="test">Suivre</button>
+                                <?php  } else { ?>
+                                    <button class="btn btn-sm bg-base-300" id="test">Ne plus suivre</button>
+                            <?php   }
+                            } ?>
+                            </div>
                     </div>
                 </div>
                 <!-- Image du post -->

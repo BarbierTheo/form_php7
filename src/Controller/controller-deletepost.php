@@ -26,6 +26,9 @@ $stmt->execute();
 
 $postToDelete = $stmt->fetch(PDO::FETCH_ASSOC);
 
+$pic_path = "../../assets/img/users/" . $_SESSION['user_id'] . "/" . $postToDelete['pic_name'];
+
+
 
 // On vérifie que le user est bien le propriétaire du post
 if ($_SESSION['user_id'] != $postToDelete['user_id']) {
@@ -41,6 +44,8 @@ if ($_SESSION['user_id'] != $postToDelete['user_id']) {
         $stmt = $pdo->prepare($sql);
 
         $stmt->execute();
+
+        unlink("$pic_path");
 
         header('location: controller-index.php');
         exit;

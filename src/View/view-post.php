@@ -19,11 +19,12 @@
             </div>
             <div class="flex items-center gap-4">
             <div id="liked">
-    <?php if (!Follows::alreadyFollow($_SESSION['user_id'], $uniquePost['user_id'])) { ?>
-        <button class="btn btn-sm bg-[#84ad21] text-white" id="follow" data-userpost="<?= $uniquePost['user_id'] ?>">Suivre</button>
+    <?php if($uniquePost['user_id'] != $_SESSION['user_id']) { 
+    if (!Follows::alreadyFollow($_SESSION['user_id'], $uniquePost['user_id'])) { ?>
+        <button class="btn btn-sm bg-[#84ad21] text-white follow" data-userpost="<?= $uniquePost['user_id'] ?>">Suivre</button>
         <?php } else { ?>
-            <button class="btn btn-sm bg-base-300" id="follow" data-userpost="<?= $uniquePost['user_id'] ?>">Ne plus suivre</button>
-            <?php } ?>
+            <button class="btn btn-sm bg-base-300 follow" data-userpost="<?= $uniquePost['user_id'] ?>">Ne plus suivre</button>
+            <?php } } ?>
         </div>
 
                 <?php if ($uniquePost['user_id'] == $_SESSION['user_id']) { ?>
@@ -87,8 +88,7 @@
                                     </svg>
                                 </div>
                                 <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
-                                    <li><a href="controller-post.php?post=<?= $value['post_id'] ?>&comment=<?= $value['com_id'] ?>">Modifier le commentaire</a></li>
-                                    <li><a href="controller-post.php?post=<?= $value['post_id'] ?>&comment=<?= $value['com_id'] ?>" class="text-red-700">Supprimer le commentaire</a></li>
+                                    <li><button class="text-red-700 delete" data-post="<?= $value['post_id'] ?>" data-comment="<?= $value['com_id'] ?>">Supprimer le commentaire</button></li>
                                 </ul>
                             </div>
 
@@ -99,29 +99,12 @@
 
                 <?php } ?>
             </div>
-            <!-- Commentaire si non isset dans l'URL alors classique ajout de commentaire -->
-            <?php if (isset($_GET['comment']) AND Comments::showOneComment($_GET['post'], $_GET['comment'])['user_id'] == $_SESSION['user_id']) { ?>
-
-                <form class="w-full flex gap-4 mt-2" method="post">
-                    <input type="text" placeholder="<?= Comments::showOneComment($_GET['post'], $_GET['comment'])['com_text'] ?>" class="input input-ghost w-full" name="newComment">
-                    <button class="btn btn-outline">Modifier</button>
-                    <button class="btn text-zinc-50 bg-red-800/80">Supprimer</button>
-                </form>
-                <small class="text-red-400"><?= $errors['newComment'] ?? "" ?></small>
-
-                <!-- Sinon modification voir suppression du commentaire -->
-            <?php
-            } else {
-            ?>
-
+    
                 <form class="w-full flex gap-4 mt-2" method="post">
                     <input type="text" placeholder="Ajouter un commentaire" class="input input-ghost w-full" name="newComment">
                     <button class="btn btn-outline">Ajouter</button>
                 </form>
                 <small class="text-red-400"><?= $errors['newComment'] ?? "" ?></small>
-
-
-            <?php } ?>
 
 
         </div>

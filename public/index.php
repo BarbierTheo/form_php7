@@ -41,9 +41,9 @@
                             <div id="liked">
                                 <?php } else {
                                 if (!Follows::alreadyFollow($_SESSION['user_id'], $value['user_id'])) { ?>
-                                    <button class="btn btn-sm bg-[#84ad21] text-white" id="test">Suivre</button>
+                                    <button class="btn btn-sm bg-[#84ad21] text-white" id="follow" data-userpost="<?= $value['user_id'] ?>">Suivre</button>
                                 <?php  } else { ?>
-                                    <button class="btn btn-sm bg-base-300" id="test">Ne plus suivre</button>
+                                    <button class="btn btn-sm bg-base-300" id="follow" data-userpost="<?= $value['user_id'] ?>">Ne plus suivre</button>
                             <?php   }
                             } ?>
                             </div>

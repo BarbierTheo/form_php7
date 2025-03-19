@@ -15,16 +15,17 @@
         <div class="flex flex-col gap-2 lg:gap-4 min-w-[50%]">
             <div class="flex flex-col lg:flex-row gap-1 lg:gap-4">
                 <span class="font-semibold text-xl"><?= $countProfile[0]['user_pseudo'] ?></span>
-
-                <?php if (!Follows::alreadyFollow($_SESSION['user_id'], $_GET['user'], $pdo)) { ?>
-                    <button class="btn btn-sm bg-[#84ad21] text-white">Suivre</button>
-                <?php } else { ?>
-                    <button class="btn btn-sm bg-base-300">Ne plus suivre</button>
-                <?php } ?>
+<div id="liked">
+    <?php if (!Follows::alreadyFollow($_SESSION['user_id'], $_GET['user'])) { ?>
+        <button class="btn btn-sm bg-[#84ad21] text-white" id="follow" data-userpost="<?= $_GET['user'] ?>">Suivre</button>
+        <?php } else { ?>
+            <button class="btn btn-sm bg-base-300" id="follow" data-userpost="<?= $_GET['user'] ?>">Ne plus suivre</button>
+            <?php } ?>
+        </div>
             </div>
             <div class="flex gap-1 lg:gap-4 flex-col lg:flex-row max-md:text-sm">
                 <span class="lg:text-zinc-400"><span class="font-semibold text-base-content"><?= $countProfile[0]['posts'] ?? '0' ?></span> publications</span>
-                <span class="lg:text-zinc-400"><span class="font-semibold text-base-content"><?= $countProfile[0]['followers'] ?? '0' ?></span> followers</span>
+                <span class="lg:text-zinc-400"><span id="comptFollow" class="font-semibold text-base-content"><?= $countProfile[0]['followers'] ?? '0' ?></span> followers</span>
                 <span class="lg:text-zinc-400"><span class="font-semibold text-base-content"><?= $countProfile[0]['follows'] ?? '0' ?></span> suivi(e)s</span>
             </div>
             <span><?= $profile['user_description'] ?></span>

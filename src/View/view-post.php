@@ -18,9 +18,13 @@
                 </div>
             </div>
             <div class="flex items-center gap-4">
-                <?php if (!Follows::alreadyFollow($_SESSION['user_id'], $uniquePost['user_id'], $pdo)) { ?>
-                    <button class="btn btn-sm bg-[#84ad21] text-white">Suivre</button>
-                <?php } ?>
+            <div id="liked">
+    <?php if (!Follows::alreadyFollow($_SESSION['user_id'], $uniquePost['user_id'])) { ?>
+        <button class="btn btn-sm bg-[#84ad21] text-white" id="follow" data-userpost="<?= $uniquePost['user_id'] ?>">Suivre</button>
+        <?php } else { ?>
+            <button class="btn btn-sm bg-base-300" id="follow" data-userpost="<?= $uniquePost['user_id'] ?>">Ne plus suivre</button>
+            <?php } ?>
+        </div>
 
                 <?php if ($uniquePost['user_id'] == $_SESSION['user_id']) { ?>
 

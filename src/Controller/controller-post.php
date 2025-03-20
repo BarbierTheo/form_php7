@@ -73,6 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             ('" . ($_POST['newComment']) . "', " .  $_GET['post'] . ", " . $_SESSION['user_id'] . ", " . time() . " )";
         $stmt = $pdo->prepare($sql);
         $stmt->execute();
+        header('location: controller-post.php?post=' . $_GET['post']);
     }
 }
 

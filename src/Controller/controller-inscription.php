@@ -146,6 +146,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $stmt->bindValue(':password', password_hash($_POST['password1'], PASSWORD_DEFAULT), PDO::PARAM_STR);
 
         if ($stmt->execute()) {
+
+            $user_id = $pdo->lastInsertId(0);
+            $user_directory = "../../assets/img/users/" . $user_id . "/";
+            mkdir($user_directory);
             header("Location: controller-confirmation.php");
             exit;
         }

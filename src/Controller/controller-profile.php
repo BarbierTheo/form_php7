@@ -12,7 +12,7 @@ $pdo = new PDO('mysql:host=' . DB_HOST . ';dbname=' . DB_NAME . ';charset=utf8',
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 // Récupération de l'avatar et de la description du profil de l'utilisateur
-$sql = "SELECT `user_avatar`, `user_description` FROM `76_users` WHERE `user_id` = " . $_SESSION['user_id'];
+$sql = "SELECT `user_avatar`, `user_pseudo`, `user_description` FROM `76_users` WHERE `user_id` = " . $_SESSION['user_id'];
 $stmt = $pdo->query($sql);
 $profile = $stmt->fetch(PDO::FETCH_ASSOC);
 

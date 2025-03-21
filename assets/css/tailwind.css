@@ -11,7 +11,6 @@
     --color-red-700: oklch(0.505 0.213 27.518);
     --color-red-800: oklch(0.444 0.177 26.899);
     --color-lime-600: oklch(0.648 0.2 131.684);
-    --color-zinc-50: oklch(0.985 0 0);
     --color-zinc-400: oklch(0.705 0.015 286.067);
     --color-zinc-500: oklch(0.552 0.016 285.938);
     --color-zinc-600: oklch(0.442 0.017 285.786);
@@ -6858,9 +6857,6 @@
   .bg-red-700\/50 {
     background-color: color-mix(in oklab, var(--color-red-700) 50%, transparent);
   }
-  .bg-red-800\/80 {
-    background-color: color-mix(in oklab, var(--color-red-800) 80%, transparent);
-  }
   .divider-accent {
     &:before, &:after {
       background-color: var(--color-accent);
@@ -7822,9 +7818,6 @@
   }
   .text-white {
     color: var(--color-white);
-  }
-  .text-zinc-50 {
-    color: var(--color-zinc-50);
   }
   .text-zinc-500 {
     color: var(--color-zinc-500);

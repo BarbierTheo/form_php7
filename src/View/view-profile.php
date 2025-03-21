@@ -24,7 +24,7 @@
                 <span class="lg:text-zinc-400"><span class="font-semibold text-base-content"><?= $countProfile[0]['followers'] ?? '0' ?></span> followers</span>
                 <span class="lg:text-zinc-400"><span class="font-semibold text-base-content"><?= $countProfile[0]['follows'] ?? '0' ?></span> suivi(e)s</span>
             </div>
-            <span><?= $profile['user_description'] ?></span>
+            <span class="break-words"><?= $profile['user_description'] ?></span>
         </div>
     </section>
 

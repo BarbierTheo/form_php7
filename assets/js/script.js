@@ -24,9 +24,9 @@ document.addEventListener("click", function (element) {
 
 
 
-    if (element.target.dataset.delete) {
+    if (element.target.dataset.comment) {
 
-        let commentToDelete = element.target.dataset;
+        let commentToDelete = element.target.dataset.comment;
 
         fetch("controller-deletecomment.php?&comment=" + commentToDelete)
             .then((response) => response.text())
@@ -36,6 +36,7 @@ document.addEventListener("click", function (element) {
                 }
             })
     }
+
 
 
     let closestButton = element.target.closest("button");

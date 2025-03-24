@@ -5,8 +5,8 @@ include_once '../Model/model-comments.php';
 include_once '../Model/model-follows.php';
 session_start();
 
-if (!isset($_SESSION['user_id'])) {
-    header('Location: ../../public/index.php');
+if (!isset($_SESSION['user_id']) OR !is_numeric($_GET['post'])) {
+    header('Location: controller-index.php');
     exit;
 }
 
@@ -27,7 +27,7 @@ $existantPost = $stmt->fetch(PDO::FETCH_ASSOC);
 
 
 
-if (isset($_GET['post']) and $existantPost) {
+if (isset($_GET['post']) AND $existantPost) {
     // Récupère toutes les informations du post contenu dans l'URL si il existe
     $sql = "SELECT post_description, pic_name, user_pseudo, post_timestamp, user_id, post_id, user_avatar FROM 76_posts
             NATURAL JOIN 76_pictures

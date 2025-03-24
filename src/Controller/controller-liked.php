@@ -17,7 +17,7 @@ if (Likes::alreadyLiked($_GET['post'])) {
     $stmt = $pdo->prepare($sql);
     $stmt->execute();
 
-    echo ("unliked");
+    echo "unliked";
 
     // Si l'user n'a pas liké, alors on l'ajoute du tableau likes
 } else {
@@ -27,5 +27,5 @@ if (Likes::alreadyLiked($_GET['post'])) {
     $stmt = $pdo->prepare($sql);
     $stmt->execute();
 
-    echo ("liked");
+    echo "liked";
 }

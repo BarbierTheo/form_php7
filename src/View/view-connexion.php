@@ -42,7 +42,7 @@
 
                     <div class="flex w-full justify-between items-end mt-2 lg:mt-4">
                         <div>
-                            <span class="fieldset-label text-red-400/80"><?= $errors['connexion'] ?? "" ?></span>
+                            <span class="fieldset-label text-red-400/80 my-1"><?= $errors['connexion'] ?? "" ?></span>
                             <button class="btn bg-base-100" type="submit">Connectez-vous</button>
                         </div>
 

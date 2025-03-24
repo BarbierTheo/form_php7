@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($found == false) {
-            $errors['connexion'] = 'Identifiant ou mot de passe inccorect';
+            $errors['connexion'] = 'Identifiant ou mot de passe incorrect';
         } else {
             // Vérifie le mot de passe de l'utilisateur
             if (password_verify($_POST['password'], $user['user_password'])) {

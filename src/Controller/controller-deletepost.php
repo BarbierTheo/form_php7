@@ -28,8 +28,6 @@ $postToDelete = $stmt->fetch(PDO::FETCH_ASSOC);
 
 $pic_path = "../../assets/img/users/" . $_SESSION['user_id'] . "/" . $postToDelete['pic_name'];
 
-
-
 // On vérifie que le user est bien le propriétaire du post
 if ($_SESSION['user_id'] != $postToDelete['user_id']) {
     header("Location: controller-index.php");
@@ -40,13 +38,9 @@ if ($_SESSION['user_id'] != $postToDelete['user_id']) {
         // On supprime le post qui supprimera le reste en cascade
         $sql = "DELETE FROM `76_posts` 
         WHERE post_id = " . $_GET['post'];
-
         $stmt = $pdo->prepare($sql);
-
         $stmt->execute();
-
         unlink("$pic_path");
-
         header('location: controller-index.php');
         exit;
     }

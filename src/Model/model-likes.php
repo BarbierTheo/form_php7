@@ -84,4 +84,45 @@ class Likes
         $pdo = '';
         return $countLikes;
     }
+
+    /**
+     * Permet de supprimer le like d'une publication
+     * 
+     * @param INT $post_id l'ID du post
+     * @param INT $user_id l'ID du user
+     * 
+     */
+    public static function deleteLike($post_id, $user_id)
+    {
+        $pdo = new PDO('mysql:host=' . DB_HOST . ';dbname=' . DB_NAME . ';charset=utf8', DB_USER, DB_PASS);
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        $sql = "DELETE FROM `76_likes` WHERE `post_id` = :post_id AND `user_id` = :user_id";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindValue(':user_id', $user_id, PDO::PARAM_INT);
+        $stmt->bindValue(':post_id', $post_id, PDO::PARAM_INT);
+        $stmt->execute();
+
+        return "unliked";
+    }
+
+    /**
+     * Permet d'ajouter un like à une publication
+     * 
+     * @param INT $post_id l'ID du post
+     * @param INT $user_id l'ID du user
+     */
+    public static function addLike($post_id, $user_id)
+    {
+        $pdo = new PDO('mysql:host=' . DB_HOST . ';dbname=' . DB_NAME . ';charset=utf8', DB_USER, DB_PASS);
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        $sql = "INSERT INTO `76_likes` (`user_id`, `post_id`) VALUES (:user_id, :post_id)";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindValue(':user_id', $user_id, PDO::PARAM_INT);
+        $stmt->bindValue(':post_id', $post_id, PDO::PARAM_INT);
+        $stmt->execute();
+
+        return "liked";
+    }
 }
